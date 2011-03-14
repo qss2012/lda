@@ -4,12 +4,16 @@
  */
 
 package movielens;
-
+import data.Item;
+import data.Tag;
+import data.User;
 /**
  *
  * @author kaldr
  */
-public class setItem {
-    orII oringinalItem=new orII();
-    
+public class orTags {
+   Item movies;
+   Tag tags;
+   User users;
+
 }

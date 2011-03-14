@@ -3,6 +3,7 @@
  */
 
 package data;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -12,6 +13,7 @@ import java.util.HashMap;
 public class Item {
     public HashMap<String,Integer> item2id;
     public HashMap<Integer,String> id2item;
+    public HashMap<Integer,ArrayList>item2tag;
     public int len;
     //Construction function
     public Item(){
