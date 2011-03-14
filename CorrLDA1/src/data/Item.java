@@ -35,9 +35,4 @@ public class Item {
         return id2item.containsKey(id);
     }
     //Add
-    public void addItem(String title){
-        if(!contain(title)){
-            
-        }
-    }
 }
