@@ -4,6 +4,8 @@
  */
 package movielens;
 
+import java.util.Arrays;
+
 /**
  *
  * @author kaldr
@@ -13,8 +15,10 @@ public class test {
         orII doc = new orII();
         String document="movies.dat";
         doc.readMovie(document);
-        for (int i = 1; i < 15; i++) {
-            System.out.println("document " + i + " is " + doc.id_title.get(i));
-        }
+        Object[] b=doc.getIDKey();
+       for(int i=0;i<100;i++){
+           System.out.println(b[i]);
+       }
+        
     }
 }

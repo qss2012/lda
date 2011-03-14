@@ -2,18 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package movielens;
+
 import data.Item;
+
 /**
  *
  * @author kaldr
  */
-public class setEntity {
+public class setEntity {    
     public Item movies;
-    
-    public static void main(String args[]){
-            
+    public static void main(String args[]) {
+        getItem getitem=new getItem();
+        String itemFile = "movies.dat";
+        Item movies = getitem.setItem(itemFile);
     }
-
 }
