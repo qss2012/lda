@@ -36,6 +36,8 @@ public class Item {
     }
     //Add
     public void addItem(String title){
-        if(contain(title))
+        if(!contain(title)){
+            
+        }
     }
 }
