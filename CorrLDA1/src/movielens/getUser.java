@@ -4,15 +4,11 @@
  */
 
 package movielens;
-import data.Item;
-import data.Tag;
-import data.User;
+
 /**
  *
  * @author kaldr
  */
-public class orTags {
-   Item movies;
-   Tag tags;
-   User users;
+public class getUser {
+    
 }

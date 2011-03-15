@@ -2,7 +2,9 @@
  * This function returns 
  */
 package movielens;
+
 import data.Item;
+import data.User;
 import java.util.Arrays;
 
 /**
@@ -11,23 +13,16 @@ import java.util.Arrays;
  */
 public class getItem {
 
+    public User users = new User();
     public Item movies = new Item();
     public orII orMovie = new orII();
     //structural function
 
     public getItem() {
         movies = new Item();
+        users = new User();
         orMovie = new orII();
     }
-    //main
-
-    /**
-    public static void main(String args[]) {
-    getItem item = new getItem();
-    String orFile = "movies.dat";
-    item.setItem(orFile);
-    }
-     **/
     //Configure the movies from orginal movie data.
     public Item setItem(String orFile) {
         orMovie.readMovie(orFile);
