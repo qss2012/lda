@@ -7,6 +7,7 @@ package movielens;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -15,7 +16,8 @@ import java.util.StringTokenizer;
  * @author kaldr
  */
 public class orTags {
-
+    public HashMap<Integer,ArrayList> doc2tag;
+    public HashMap<Integer,ArrayList> user2tag;
     public HashMap<Integer, String> id2tags;
     public HashMap<String, Integer> tags2id;
 
@@ -59,5 +61,8 @@ public class orTags {
             e.printStackTrace();
 
         }
+    }
+    public void setTagItem(){
+        
     }
 }
