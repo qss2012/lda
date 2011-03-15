@@ -4,6 +4,8 @@
  */
 package movielens;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kaldr
@@ -16,18 +18,24 @@ public class test {
         orTags tag=new orTags();
         String document = "movies.dat";
         //doc.readMovie(document);
-        String ratingdoc = "test";
-        //user.readForItem(ratingdoc);
-        /*
-        Object[] b = user.userid2doc.keySet().toArray();
-        for (int i = 0; i < 3; i++) {
-            String c = b[i].toString();
-            int dc=Integer.parseInt(c);
-            System.out.println(user.userid2doc.get(dc));
-        }
-         */
         String tagdoc="tags.dat";
         tag.setTags(tagdoc);
+        //get all doc id.
+        Object[] docids=tag.doc2tag.keySet().toArray();
+        int len=docids.length;
+        System.out.println(len+" documents have tags");
+        for(int i=0;i<5;i++){
+            String docidS=docids[i].toString();
+            Integer docid=Integer.parseInt(docidS);
+            ArrayList tags=tag.doc2tag.get(docid);
+            int len_tag=tags.size();
+            System.out.println("Document "+docid+" has tags:");
+            for(int j=0;j<len_tag;j++){
+                String tagidS=tags.get(j).toString();
+                Integer tagid=Integer.parseInt(tagidS);
+                System.out.println("::"+tag.id2tags.get(tagid)+"::");
+            }
+        }
 
     }
 }

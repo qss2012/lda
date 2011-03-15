@@ -43,6 +43,7 @@ public class orUser {
                 userid = tknr.nextToken();
                 Integer id = Integer.parseInt(userid);
                 doc = tknr.nextToken();
+                doc=tknr.nextToken();
                 if (!lastuserid.equals(userid)) {
                     ArrayList b = new ArrayList();
                     b.add(doc);
