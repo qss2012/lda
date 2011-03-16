@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package movielens;
-import java.util.ArrayList;
 
 /**
  *
