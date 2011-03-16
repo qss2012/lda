@@ -51,29 +51,29 @@ public class orTags {
                     user2tag.put(user, b);
                     doc2tag.put(doc, b);
                     //
-                    System.out.println("User "+user+" and Doc"+doc+" has tag "+id2tags.get(no));
                     //
                     no++;
                 } else {
-                    if (doc2tag.containsKey(doc)) {
-                        doc2tag.get(doc).add(no);
-                    } else {
-                        b = new ArrayList();
-                        b.add(no);
-                        doc2tag.put(doc, b);
-                    }
-                    if (user2tag.containsKey(user)) {
-                        user2tag.get(user).add(no);
-                    } else {
-                        b = new ArrayList();
-                        b.add(no);
-                        user2tag.put(user, b);
-                    }
+                   
                     if (!tags2id.containsKey(tag)) {
                         id2tags.put(no, tag);
                         tags2id.put(tag, no);
-                        if(no<100)System.out.println("User "+user+" and Doc"+doc+" has tag "+id2tags.get(no));
                         no++;
+                    }
+                    Integer newtagid=tags2id.get(tag);
+                     if (doc2tag.containsKey(doc)) {
+                        doc2tag.get(doc).add(newtagid);
+                    } else {
+                        b = new ArrayList();
+                        b.add(newtagid);
+                        doc2tag.put(doc, b);
+                    }
+                    if (user2tag.containsKey(user)) {
+                        user2tag.get(user).add(newtagid);
+                    } else {
+                        b = new ArrayList();
+                        b.add(newtagid);
+                        user2tag.put(user, b);
                     }
                 }
                 line = reader.readLine();

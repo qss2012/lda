@@ -13,8 +13,6 @@ import data.Item;
 public class setEntity {    
     public Item movies;
     public static void main(String args[]) {
-        getItem getitem=new getItem();
-        String itemFile = "movies.dat";
-        Item movies = getitem.setItem(itemFile);
+       
     }
 }
