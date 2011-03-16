@@ -10,32 +10,24 @@ import java.util.ArrayList;
  * @author kaldr
  */
 public class test {
-
+    
     public static void main(String args[]) {
-        orII doc = new orII();
-        orUser user = new orUser();
-        orTags tag = new orTags();
-        String document = "movies.dat";
-        //doc.readMovie(document);
-        String tagdoc = "tags.dat";
-        tag.setTags(tagdoc);
-        //get all doc id.
-        Object[] docids = tag.doc2tag.keySet().toArray();
-        int len = docids.length;
-        System.out.println(len + " documents have tags");
-        for (int i = 0; i < 50; i++) {
-            String docidS = docids[i].toString();
-            Integer docid = Integer.parseInt(docidS);
-            ArrayList tags = tag.doc2tag.get(docid);
-            int len_tag = tags.size();
-            System.out.println("Doc " + docid + " has tags:");
-            for (int j = 0; j < len_tag; j++) {
-                String tagidS = tags.get(j).toString();
-                Integer tagid = Integer.parseInt(tagidS);
-                System.out.println("::" + tag.id2tags.get(tagid) + "::");
-
-            }
-            System.out.println("");
-        }
+        orII movie=new orII();
+        orUser user=new orUser();
+        orTags tag=new orTags();
+        String moviefile="movies.dat";
+        String user2moviefile="ratings.dat";
+        String tagfile="tags.dat";
+        //setting data;
+        movie.readMovie(moviefile);//get movie and movie id;
+        Integer movielen=movie.id_title.size();//
+        user.readForItem(user2moviefile);//get user and rated movie;
+        Integer userlen=user.userid2doc.size();
+        tag.setTags(tagfile);//get tag id and tags; get user and tagged movie and corresponding tags; get movie and its tags;
+        Integer taglen=tag.id2tags.size();
+        //initialdata;
+        System.out.println("Movies: "+movielen);
+        System.out.println("Users: "+userlen);
+        System.out.println("Tags: "+taglen);
     }
 }

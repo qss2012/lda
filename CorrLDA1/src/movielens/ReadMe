@@ -1,0 +1,10 @@
+This document is a statement of this programme.
+
+orII is a programme to get Item and its id.
+    id_title is a HashMap<Integer,String> which contains item id and title;
+    title_id is also a HashMap<String, Integer> which contains item title and id;
+    function readMovie is a function to read document "Movie.dat"
+
+
+
+
