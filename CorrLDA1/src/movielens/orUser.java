@@ -19,10 +19,10 @@ public class orUser {
 
     public HashMap<Integer, ArrayList> userid2doc;
 
-
     public orUser() {
         userid2doc = new HashMap<Integer, ArrayList>();
     }
+
     public void readForItem(String filename) {
         String userid = "";
         String lastuserid = userid;
@@ -31,21 +31,22 @@ public class orUser {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
             System.out.println("----" + filename + "loaded! ----");
             String line = reader.readLine();
+            int tknrlen = 0;
             int i = 0;
             while (line != null) {
                 i++;
-                StringTokenizer tknr = new StringTokenizer(line, "::");
+                StringTokenizer tknr = new StringTokenizer(line, " ");
+                tknrlen = tknr.countTokens();
                 userid = tknr.nextToken();
-                Integer id = Integer.parseInt(userid);
                 doc = tknr.nextToken();
-                if (!lastuserid.equals(userid)) {
-                    ArrayList b = new ArrayList();
-                    b.add(doc);
-                    userid2doc.put(id, b);
-                } else {
+                ArrayList b=new ArrayList();
+                b.add(doc);
+                 Integer id = Integer.parseInt(userid);
+                userid2doc.put(id,b);               
+                for (int j = 1; j < tknrlen-1; j++) {
+                    doc = tknr.nextToken();
                     userid2doc.get(id).add(doc);
                 }
-                lastuserid = userid;
                 line = reader.readLine();
             }
             reader.close();
