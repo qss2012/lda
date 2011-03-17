@@ -4,23 +4,18 @@
  */
 
 package corrlda;
-import data.*;
 /**
  *
  * @author kaldr
  */
 public class CorrLDA {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        
+    public Integer k;
+    
+    public CorrLDA(){
+        k=50;
     }
-
-    public static void initial(){
-        
+    public static void initialize(Model model){
+                
     }
 
 }

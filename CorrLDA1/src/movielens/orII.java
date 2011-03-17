@@ -40,7 +40,8 @@ public class orII {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     new FileInputStream(filename), "UTF-8"));
-            System.out.println("----"+filename + " loaded!----");
+            System.out.println("----"+filename + " loaded!----\n");
+            System.out.println("----Arranging movies to id----\n");
             String line = reader.readLine();
             int i = 0;
             while (line != null) {
@@ -54,7 +55,7 @@ public class orII {
                 line = reader.readLine();
             }
             reader.close();
-            System.out.println("----Original data "+filename+" is analysed.----");
+            System.out.println("Original data "+filename+" is analysed.\n");
             return true;
         } catch (Exception e) {
             System.out.println("Error while reading dictionary:" + e.getMessage());

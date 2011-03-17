@@ -29,7 +29,8 @@ public class orUser {
         String doc = "";
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
-            System.out.println("----" + filename + "loaded! ----");
+            System.out.println("----" + filename + " loaded! ----\n");
+            System.out.println("----Arranging user to id and movies----\n");
             String line = reader.readLine();
             int tknrlen = 0;
             int i = 0;
@@ -50,6 +51,7 @@ public class orUser {
                 line = reader.readLine();
             }
             reader.close();
+            System.out.println("Data "+filename+" is analyzed.\n");
         } catch (Exception e) {
             System.out.println("Error while reading dictionary:" + e.getMessage());
             e.printStackTrace();
