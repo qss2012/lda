@@ -22,14 +22,27 @@ public class CorrLDA {
     public double[][] fine;//fine is p(movie|z); fine~Dir(beta)
     public double[][] digamma;//diggamma is p(tag|ztag); diggama~Dir(gamma)
     //Counts
-    public int[][] nmd
+    public int movielen;
+    public int userlen;
+    public int taglen;
+    
+    public int[][] nz_u;//number of times that topic z has occured in user u;
+    public int[][] nm_z;//number of times the movie m is assigned to topic z;
+    public int[][] nt_z;//number of times tag t is generated from topic z;
+
     
     public CorrLDA(){
-        k=50;
+        alpha=0.1;
+        beta=0.1;
+        gamma=0.1;
+        k=50;        
     }
-    public static void initialize(Model model){
+    public void initialize(Model model){
         System.out.println("************************\nThe model is initializing.\n************************\n");
         model.initialize();
+        userlen=model.userlen;
+        taglen=model.taglen;
+        movielen=model.itemlen;
                 
     }
 
