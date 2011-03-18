@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * This programme deals with rating.dat to userwithmovie.dat, because the orienated document is too large to deal with.
  */
 package movielens;
 
