@@ -51,8 +51,6 @@ public class orTags {
                     tags2id.put(tag, no);
                     user2tag.put(user, b);
                     doc2tag.put(doc, b);
-                    //
-                    //
                     no++;
                 } else {
                    
