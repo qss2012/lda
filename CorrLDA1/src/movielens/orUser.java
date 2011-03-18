@@ -29,8 +29,8 @@ public class orUser {
         String doc = "";
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
-            System.out.println("----" + filename + " loaded! ----\n");
-            System.out.println("----Arranging user to id and movies----\n");
+            System.out.println("******************************" + filename + " loaded!\n");
+            System.out.println("Arranging user to id and movies\n******************************");
             String line = reader.readLine();
             int tknrlen = 0;
             int i = 0;

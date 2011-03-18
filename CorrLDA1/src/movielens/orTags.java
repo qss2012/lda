@@ -38,8 +38,8 @@ public class orTags {
         b.add(no);
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
-            System.out.println("----" + filename + " loaded! ----\n");
-            System.out.println("----Arranging tags to id, movies and users----\n");
+            System.out.println("******************************" + filename + " loaded!\n");
+            System.out.println("Arranging tags to id, movies and users\n******************************");
             String line = reader.readLine();
             while (line != null) {
                 StringTokenizer tknr = new StringTokenizer(line, "::");

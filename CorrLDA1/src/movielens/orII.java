@@ -40,8 +40,8 @@ public class orII {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     new FileInputStream(filename), "UTF-8"));
-            System.out.println("----"+filename + " loaded!----\n");
-            System.out.println("----Arranging movies to id----\n");
+            System.out.println("******************************\n"+filename + " loaded!\n");
+            System.out.println("Arranging movies to id----\n******************************");
             String line = reader.readLine();
             int i = 0;
             while (line != null) {
