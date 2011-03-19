@@ -15,13 +15,15 @@ public final class CorrLDA {
      * Model requirement
      */
     //Parameters
-    
+
     public double alpha = 0.1;
     public double beta = 0.1;
     public double gamma = 0.1;
-    public Integer k = 50;//k is the topic number;
+    public Integer K = 50;//k is the topic number;
     public double[][] theta;//theta is the topic distribution for each user; theta=p(z|user); theta~Dir(alpha)
-    public Vector<Integer>[] z;;//z is the topic chosen for a movie; z~mul(theta)
+    public Vector<Integer>[] z;
+
+    ;//z is the topic chosen for a movie; z~mul(theta)
     public int[][] ztag;//ztag is the topic chosen for a tag; ztag~uni(z)
     public double[][] fine;//fine is p(movie|z); fine~Dir(beta)
     public double[][] digamma;//diggamma is p(tag|ztag); diggama~Dir(gamma)
@@ -50,41 +52,64 @@ public final class CorrLDA {
     public void initialize(Model model) {
         System.out.println("******************************\nThe model is initializing.\n******************************\n");
         model.initialize();
-        
+
         //initial count
         movielen = model.itemlen;
         userlen = model.userlen;
         taglen = model.taglen;
-        nz_u = new int[userlen][k];
-        nm_z = new int[movielen][k];
-        nt_z = new int[taglen][k];
+        nz_u = new int[userlen][K];
+        nm_z = new int[movielen][K];
+        nt_z = new int[taglen][K];
         nsumz_u = new int[userlen];
-        nsumm_z = new int[k];
-        nsumt_z = new int[k];
-        
-        
+        nsumm_z = new int[K];
+        nsumt_z = new int[K];
+
+
         for (int i = 0; i < userlen; i++) {
-            for (int j = 0; j < k; j++) {
+            for (int j = 0; j < K; j++) {
                 nz_u[i][j] = 0;
             }
         }
         for (int i = 0; i < movielen; i++) {
-            for (int j = 0; j < k; j++) {
+            for (int j = 0; j < K; j++) {
                 nm_z[i][j] = 0;
             }
         }
         for (int i = 0; i < taglen; i++) {
-            for (int j = 0; j < k; j++) {
+            for (int j = 0; j < K; j++) {
                 nt_z[i][j] = 0;
             }
         }
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < K; i++) {
             nsumm_z[i] = 0;
             nsumt_z[i] = 0;
         }
         for (int i = 0; i < userlen; i++) {
             nsumz_u[i] = 0;
         }
-        
+        //initial topic/z
+        z = new Vector[userlen];
+        Object[] userIDset = model.userData.userid2doc.keySet().toArray();
+        for (int u = 0; u < userlen; u++) {//i is user
+            int userID = Integer.parseInt(userIDset[u].toString());
+            int M = model.userData.userid2doc.get(userID).size();//number of movies of a user;
+
+            for (int m = 0; m < M; m++) {
+                int topic = (int) Math.floor(Math.random() * K);
+                int movieID=Integer.parseInt(model.userData.userid2doc.get(userID).get(m).toString());
+                z[u].add(topic);
+                //number of topic occured in user u
+                nz_u[u][topic]+=1;
+                nsumz_u[topic]+=1;
+                //number of movie assigned to topic
+                nm_z[movieID][topic]+=1;
+                
+                nt_z = new int[taglen][K];
+                
+                nsumm_z = new int[K];
+                nsumt_z = new int[K];
+            }
+        }
+
     }
 }
