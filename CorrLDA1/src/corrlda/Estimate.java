@@ -10,5 +10,8 @@ package corrlda;
  * @author kaldr
  */
 public class Estimate {
+    public void estimate(CorrLDA corrlda){
+        
+    }
 
 }
