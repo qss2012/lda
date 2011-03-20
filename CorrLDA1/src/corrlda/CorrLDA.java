@@ -37,10 +37,10 @@ public final class CorrLDA {
     public int[] nsumt_z;//sum of all the tags assigned to topic k;
     //configuration
     public int nitter = 2000;
-    
+    public Model movielens;
 
     public CorrLDA() {
-        Model movielens = new Model();
+        movielens = new Model();
         initialize(movielens);
     }
 

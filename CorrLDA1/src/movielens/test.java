@@ -4,7 +4,6 @@
  */
 package movielens;
 
-import corrlda.Model;
 
 /**
  *
@@ -13,7 +12,9 @@ import corrlda.Model;
 public class test {
 
     public static void main(String args[]) {
-        Model model=new Model();
-        model.initialize();
+        orII movie=new orII();
+        movie.readMovie("movies.dat");
+        orTags tag=new orTags();
+        tag.setTags("tags.dat");
     }
 }
