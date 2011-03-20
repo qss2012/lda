@@ -42,11 +42,14 @@ public final class CorrLDA {
     public CorrLDA() {
         movielens = new Model();
         initialize(movielens);
+        theta=new double[userlen][K];
+        fine=new double[movielen][K];
+        digamma=new double[taglen][K];
     }
 
     public static void main(String args[]) {
-        Estimate estimate=new Estimate();
-        CorrLDA corrlda=new CorrLDA();
+        Estimate estimate = new Estimate();
+        CorrLDA corrlda = new CorrLDA();
         estimate.estimate(corrlda);
     }
 
@@ -88,6 +91,7 @@ public final class CorrLDA {
         for (int i = 0; i < userlen; i++) {
             nsumz_u[i] = 0;
         }
+        
         //initial topic/z for movies and tags;
         z = new Vector[userlen];
         ztag = new Vector[userlen];
@@ -96,9 +100,7 @@ public final class CorrLDA {
             int userID = Integer.parseInt(userIDset[u].toString());
             int M = model.userData.userid2doc.get(userID).size();//number of movies of a user;
             int T = 0;
-            if (model.tagData.user2tag.containsKey(userID)) {
-                T = model.tagData.user2tag.get(userID).size();
-            }
+
             for (int m = 0; m < M; m++) {
                 int topic = (int) Math.floor(Math.random() * K);
                 int movieID = Integer.parseInt(model.userData.userid2doc.get(userID).get(m).toString());
@@ -110,16 +112,18 @@ public final class CorrLDA {
                 nm_z[movieID][topic] += 1;
                 nsumm_z[topic] += 1;
             }
-            if (T > 0) {
+            if (model.tagData.user2tag.containsKey(userID)) {
+                T = model.tagData.user2tag.get(userID).size();
                 for (int t = 0; t < T; t++) {
-                   int zID=(int) Math.floor(Math.random()*M);
-                   int topic= z[u].get(zID);
-                   ztag[u].add(topic);
-                   //number of tag assigend to topic
-                   nt_z[u][topic]+=1;
-                   nsumt_z[topic]+=1;
+                    int zID = (int) Math.floor(Math.random() * M);
+                    int topic = z[u].get(zID);
+                    ztag[u].add(topic);
+                    //number of tag assigend to topic
+                    nt_z[u][topic] += 1;
+                    nsumt_z[topic] += 1;
                 }
             }
+
         }
 
 
