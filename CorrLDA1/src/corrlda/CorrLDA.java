@@ -42,9 +42,9 @@ public final class CorrLDA {
     public CorrLDA() {
         movielens = new Model();
         initialize(movielens);
-        theta=new double[userlen][K];
-        fine=new double[movielen][K];
-        digamma=new double[taglen][K];
+        theta = new double[userlen][K];
+        fine = new double[movielen][K];
+        digamma = new double[taglen][K];
     }
 
     public static void main(String args[]) {
@@ -56,19 +56,23 @@ public final class CorrLDA {
     public void initialize(Model model) {
         System.out.println("******************************\nThe model is initializing.\n******************************\n");
         model.initialize();
-
+        System.out.println("The model is initialized.");
         //initial count
         movielen = model.itemlen;
         userlen = model.userlen;
         taglen = model.taglen;
         nz_u = new int[userlen][K];
+        System.out.println("nz_u ready");
         nm_z = new int[movielen][K];
+        System.out.println("nm_z ready");
         nt_z = new int[taglen][K];
+        System.out.println("nt_z ready");
         nsumz_u = new int[userlen];
         nsumm_z = new int[K];
         nsumt_z = new int[K];
+        System.out.println("nsum ready");
 
-
+        System.out.println("******************************\nThe Parameter is initializing.\n******************************\n");
         for (int i = 0; i < userlen; i++) {
             for (int j = 0; j < K; j++) {
                 nz_u[i][j] = 0;
@@ -91,7 +95,7 @@ public final class CorrLDA {
         for (int i = 0; i < userlen; i++) {
             nsumz_u[i] = 0;
         }
-        
+        System.out.println("count parameter is ready.");
         //initial topic/z for movies and tags;
         z = new Vector[userlen];
         ztag = new Vector[userlen];
@@ -100,10 +104,12 @@ public final class CorrLDA {
             int userID = Integer.parseInt(userIDset[u].toString());
             int M = model.userData.userid2doc.get(userID).size();//number of movies of a user;
             int T = 0;
-
+            z[u]=new Vector();
+            ztag[u]=new Vector();
             for (int m = 0; m < M; m++) {
                 int topic = (int) Math.floor(Math.random() * K);
-                int movieID = Integer.parseInt(model.userData.userid2doc.get(userID).get(m).toString());
+                int movieIDr = Integer.parseInt(model.userData.userid2doc.get(userID).get(m).toString());
+                int movieID=model.itemData.id_idr.get(movieIDr);
                 z[u].add(topic);
                 //number of topic occured in user u
                 nz_u[u][topic] += 1;
@@ -119,13 +125,12 @@ public final class CorrLDA {
                     int topic = z[u].get(zID);
                     ztag[u].add(topic);
                     //number of tag assigend to topic
-                    nt_z[u][topic] += 1;
+                    nt_z[t][topic] += 1;
                     nsumt_z[topic] += 1;
                 }
             }
-
         }
 
-
+        System.out.println("CorrLda is totally initialized.");
     }
 }

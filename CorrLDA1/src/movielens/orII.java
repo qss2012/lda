@@ -23,10 +23,12 @@ public class orII {
 
     public HashMap<Integer, String> id_title;
     public HashMap<String, Integer> title_id;
+    public HashMap<Integer,Integer>id_idr;
 
     public orII() {
         id_title = new HashMap<Integer, String>();
         title_id = new HashMap<String, Integer>();
+        id_idr=new HashMap<Integer,Integer>();
     }
     //get id
 
@@ -66,7 +68,7 @@ public class orII {
             String line = reader.readLine();
             int i = 0;
             while (line != null) {
-                i++;
+                
                 StringTokenizer tknr = new StringTokenizer(line, "::");
                 String id = tknr.nextToken();
                 String word = tknr.nextToken();
@@ -76,7 +78,9 @@ public class orII {
                 Integer intID = Integer.parseInt(id);
                 id_title.put(intID, word);
                 title_id.put(word, intID);
+                id_idr.put(intID,i);
                 line = reader.readLine();
+                i++;
             }
             reader.close();
             writer.close();

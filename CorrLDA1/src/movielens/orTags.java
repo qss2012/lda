@@ -55,7 +55,7 @@ public class orTags {
                     new FileInputStream(filename), "UTF-8"));
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream("tagmap.dat"), "UTF-8"));
-            System.out.println("******************************" + filename + " loaded!\n");
+            System.out.println("******************************\n" + filename + " loaded!");
             System.out.println("Arranging tags to id, movies and users\n******************************");
             String line = reader.readLine();
             while (line != null) {

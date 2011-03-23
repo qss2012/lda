@@ -16,6 +16,7 @@ public class Estimate {
         System.out.println("***************************\nSampling " + corrlda.nitter + " iteration!\n***************************");
         for (int iter = 1; iter < corrlda.nitter + 1; iter++) {
             System.out.println("Iteration " + iter + " ...");
+            System.out.println(corrlda.userlen);
             for (int u = 0; u < corrlda.userlen; u++) {
                 int movieForU = corrlda.movielens.userData.userid2doc.get(u).size();
                 for (int m = 0; m < movieForU; m++) {
