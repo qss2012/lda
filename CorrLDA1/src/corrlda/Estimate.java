@@ -24,17 +24,21 @@ public class Estimate {
                 for (int m = 0; m < movieForU; m++) {
                     topic = samplingMovieTopic(u, m, corrlda);
                     corrlda.z[u].set(m, topic);
+                    
                 }
-
-                if (corrlda.movielens.tagData.user2tag.containsKey(u)) {
+                System.out.println("Movie Topic sampled.");
+                if (corrlda.movielens.tagData.user2tag.containsKey(userID)) {
                     int tagForU = corrlda.movielens.tagData.user2tag.get(userID).size();
                     for (int t = 0; t < tagForU; t++) {
                         topic = samplingTagTopic(u, t, movieForU, corrlda);
                         corrlda.ztag[u].set(t, topic);
+                        
                     }
+                    System.out.println("Tag Topic sampled");
                 }
-
+                System.out.println("User "+u+" complete!");
             }
+            System.out.println("Iteration " + iter + "complete !");
         }
         System.out.println("Gibbs sampling completed!\n");
         System.out.println("Saving the final model!\n");
@@ -48,7 +52,8 @@ public class Estimate {
         int userID = Integer.parseInt(userIDset[u].toString());
         int topic = corrlda.z[u].get(m);
 
-        int movie = Integer.parseInt(corrlda.movielens.userData.userid2doc.get(userID).get(m).toString());
+        int movier = Integer.parseInt(corrlda.movielens.userData.userid2doc.get(userID).get(m).toString());
+        int movie=Integer.parseInt(corrlda.movielens.itemData.id_idr.get(movier).toString());
         corrlda.nm_z[movie][topic] -= 1;
         corrlda.nsumm_z[topic] -= 1;
         corrlda.nz_u[u][topic] -= 1;
