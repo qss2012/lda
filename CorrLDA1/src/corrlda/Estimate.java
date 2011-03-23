@@ -10,24 +10,26 @@ package corrlda;
  */
 public class Estimate {
 
-    public CorrLDA corrlda;
-
     public void estimate(CorrLDA corrlda) {
+        Integer movieForU = 0;
+        int topic = 0;
+        Object[] userIDset = corrlda.movielens.userData.userid2doc.keySet().toArray();
         System.out.println("***************************\nSampling " + corrlda.nitter + " iteration!\n***************************");
         for (int iter = 1; iter < corrlda.nitter + 1; iter++) {
             System.out.println("Iteration " + iter + " ...");
-            System.out.println(corrlda.userlen);
+            System.out.println(corrlda.movielens.userData.userid2doc.get(1).size());
             for (int u = 0; u < corrlda.userlen; u++) {
-                int movieForU = corrlda.movielens.userData.userid2doc.get(u).size();
+                int userID = Integer.parseInt(userIDset[u].toString());
+                movieForU = corrlda.movielens.userData.userid2doc.get(userID).size();
                 for (int m = 0; m < movieForU; m++) {
-                    int topic = samplingMovieTopic(u, m);
+                    topic = samplingMovieTopic(u, m, corrlda);
                     corrlda.z[u].set(m, topic);
                 }
 
                 if (corrlda.movielens.tagData.user2tag.containsKey(u)) {
-                    int tagForU = corrlda.movielens.tagData.user2tag.get(u).size();
+                    int tagForU = corrlda.movielens.tagData.user2tag.get(userID).size();
                     for (int t = 0; t < tagForU; t++) {
-                        int topic = samplingTagTopic(u, t, movieForU);
+                        topic = samplingTagTopic(u, t, movieForU, corrlda);
                         corrlda.ztag[u].set(t, topic);
                     }
                 }
@@ -36,16 +38,17 @@ public class Estimate {
         }
         System.out.println("Gibbs sampling completed!\n");
         System.out.println("Saving the final model!\n");
-        computeTheta();
-        computePhi();
-        computeDigamma();
+        computeTheta(corrlda);
+        computePhi(corrlda);
+        computeDigamma(corrlda);
     }
 
-    public int samplingMovieTopic(int u, int m) {
-
+    public int samplingMovieTopic(int u, int m, CorrLDA corrlda) {
+        Object[] userIDset = corrlda.movielens.userData.userid2doc.keySet().toArray();
+        int userID = Integer.parseInt(userIDset[u].toString());
         int topic = corrlda.z[u].get(m);
 
-        int movie = Integer.parseInt(corrlda.movielens.userData.userid2doc.get(u).get(m).toString());
+        int movie = Integer.parseInt(corrlda.movielens.userData.userid2doc.get(userID).get(m).toString());
         corrlda.nm_z[movie][topic] -= 1;
         corrlda.nsumm_z[topic] -= 1;
         corrlda.nz_u[u][topic] -= 1;
@@ -74,10 +77,12 @@ public class Estimate {
         return topic;
     }
 
-    public int samplingTagTopic(int u, int t, int movie) {
+    public int samplingTagTopic(int u, int t, int movie, CorrLDA corrlda) {
+        Object[] userIDset = corrlda.movielens.userData.userid2doc.keySet().toArray();
+        int userID = Integer.parseInt(userIDset[u].toString());
         int topic = corrlda.ztag[u].get(t);
 
-        int tag = Integer.parseInt(corrlda.movielens.tagData.user2tag.get(u).get(t).toString());
+        int tag = Integer.parseInt(corrlda.movielens.tagData.user2tag.get(userID).get(t).toString());
         corrlda.nt_z[tag][topic] -= 1;
         corrlda.nsumt_z[topic] -= 1;
 
@@ -100,7 +105,7 @@ public class Estimate {
         return topic;
     }
 
-    public void computePhi() {
+    public void computePhi(CorrLDA corrlda) {
         for (int m = 0; m < corrlda.movielen; m++) {
             for (int k = 0; k < corrlda.K; k++) {
                 corrlda.fine[m][k] = (corrlda.nm_z[m][k] + corrlda.beta) / (corrlda.nsumm_z[k] + corrlda.movielen * corrlda.beta);
@@ -108,7 +113,7 @@ public class Estimate {
         }
     }
 
-    public void computeTheta() {
+    public void computeTheta(CorrLDA corrlda) {
         for (int u = 0; u < corrlda.userlen; u++) {
             for (int k = 0; k < corrlda.K; k++) {
                 corrlda.theta[u][k] = (corrlda.nz_u[u][k] + corrlda.alpha) / (corrlda.nsumz_u[u] + corrlda.K * corrlda.alpha);
@@ -116,7 +121,7 @@ public class Estimate {
         }
     }
 
-    public void computeDigamma() {
+    public void computeDigamma(CorrLDA corrlda) {
         for (int t = 0; t < corrlda.taglen; t++) {
             for (int k = 0; k < corrlda.K; k++) {
                 corrlda.digamma[t][k] = (corrlda.nt_z[t][k] + corrlda.gamma) / (corrlda.nsumt_z[t] + corrlda.taglen * corrlda.gamma);
