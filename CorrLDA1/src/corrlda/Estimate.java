@@ -75,6 +75,7 @@ public class Estimate {
                 break;
             }
         }
+        if (topic==corrlda.K)topic-=1;
         corrlda.nm_z[movie][topic] += 1;
         corrlda.nsumm_z[topic] += 1;
         corrlda.nz_u[u][topic] += 1;
@@ -105,6 +106,7 @@ public class Estimate {
                 break;
             }
         }
+        if (topic==corrlda.K)topic-=1;
         corrlda.nt_z[tag][topic] += 1;
         corrlda.nsumt_z[topic] += 1;
         return topic;
