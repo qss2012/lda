@@ -87,7 +87,8 @@ public class SampleData {
                     users.add(Integer.parseInt(user));
                     writer.write(user + " ");
                     while (tknz.hasMoreTokens()) {
-                        String movie = tknz.nextToken();
+                        String movieStr = tknz.nextToken();
+                        int movie=Integer.parseInt(movieStr);
                         if (movies.contains(movie)) {
                             writer.write(movie + " ");
                         }
@@ -96,7 +97,6 @@ public class SampleData {
                 }
                 line = reader.readLine();
             }
-            Collections.sort(movies);
             reader.close();
             writer.close();
             System.out.println("Sampled");
@@ -124,6 +124,7 @@ public class SampleData {
             int d = 0;
             while (line != null) {
                 k++;
+                if(k%956==0)
                 System.out.println(k);
                 tknz = new StringTokenizer(line, "::");
                 user = tknz.nextToken();
