@@ -112,17 +112,48 @@ public class SampleData {
             System.out.println("Start Sampling tags...");
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Sampled/tags.dat"), "UTF-8"));
-            String line=reader.readLine();
+            String line = reader.readLine();
             StringTokenizer tknz;
             String user;
             String lastuser;
             String movie;
-            while(line!=null){
-                tknz=new StringTokenizer(line,"::");
-                user=tknz.nextToken();
-                movie=tknz.nextToken();
-                
-                lastuser=user;
+            int i = 0;
+            int n = 0;
+            int j = 0;
+            int m = 0;
+            int k=0;
+            int d=0;
+            while (line != null) {
+                k++;
+                if(k%956==0){
+                    d++;
+                    System.out.println(d);
+                }
+                tknz = new StringTokenizer(line, "::");
+                user = tknz.nextToken();
+                movie = tknz.nextToken();
+                for (i = n; i < users.size(); i++) {
+                    if (Integer.parseInt(users.get(i).toString()) < Integer.parseInt(user)) {
+                        continue;
+                    } else if (Integer.parseInt(users.get(i).toString()) == Integer.parseInt(user)) {
+                        n = i;
+                        for (j = m; j < movies.size(); j++) {
+                            if (Integer.parseInt(movies.get(j).toString()) < Integer.parseInt(movie)) {
+                                continue;
+                            } else if (Integer.parseInt(movies.get(j).toString()) == Integer.parseInt(movie)) {
+                                writer.write(line+"\n\r");
+                                m=j;
+                                break;
+                            }else if(Integer.parseInt(movies.get(j).toString()) > Integer.parseInt(movie)){
+                                break;
+                            }
+                        }
+                        break;
+                    } else if (Integer.parseInt(users.get(i).toString()) > Integer.parseInt(user)) {
+                        break;
+                    }
+                }
+                lastuser = user;
             }
             reader.close();
             writer.close();
