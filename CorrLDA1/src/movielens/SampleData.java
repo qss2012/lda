@@ -73,7 +73,7 @@ public class SampleData {
                 if (randnum < 0.3) {
                     StringTokenizer tknz = new StringTokenizer(movieline, "::");
                     String movie = tknz.nextToken();
-                    movies.add(movie);
+                    movies.add(Integer.parseInt(movie));
 
                     Moviewriter.write(movieline + "\r\n");
                 }
@@ -84,7 +84,7 @@ public class SampleData {
                 if (randnum < 0.05) {
                     StringTokenizer tknz = new StringTokenizer(line, " ");
                     String user = tknz.nextToken();
-                    users.add(user);
+                    users.add(Integer.parseInt(user));
                     writer.write(user + " ");
                     while (tknz.hasMoreTokens()) {
                         String movie = tknz.nextToken();
@@ -124,10 +124,7 @@ public class SampleData {
             int d = 0;
             while (line != null) {
                 k++;
-                if (k % 956 == 0) {
-                    d++;
-                    System.out.println(d + "%");
-                }
+                System.out.println(k);
                 tknz = new StringTokenizer(line, "::");
                 user = tknz.nextToken();
                 movie = tknz.nextToken();
@@ -136,25 +133,28 @@ public class SampleData {
                         continue;
                     } else if (Integer.parseInt(users.get(i).toString()) == Integer.parseInt(user)) {
                         n = i;
+                        m=0;
                         for (j = m; j < movies.size(); j++) {
                             if (Integer.parseInt(movies.get(j).toString()) < Integer.parseInt(movie)) {
                                 continue;
                             } else if (Integer.parseInt(movies.get(j).toString()) == Integer.parseInt(movie)) {
-                                writer.write(line + "\n\r");
-                                line = reader.readLine();
+                                writer.write(line + "\r\n");
                                 m = j;
                                 break;
                             } else if (Integer.parseInt(movies.get(j).toString()) > Integer.parseInt(movie)) {
+                                m = j;
                                 break;
                             }
                         }
                         break;
                     } else if (Integer.parseInt(users.get(i).toString()) > Integer.parseInt(user)) {
+                        m = j;
                         break;
                     }
                 }
-
+                line = reader.readLine();
             }
+
             reader.close();
             writer.close();
             System.out.println("Sampled");
