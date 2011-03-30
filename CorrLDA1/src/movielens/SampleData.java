@@ -115,19 +115,18 @@ public class SampleData {
             String line = reader.readLine();
             StringTokenizer tknz;
             String user;
-            String lastuser;
             String movie;
             int i = 0;
             int n = 0;
             int j = 0;
             int m = 0;
-            int k=0;
-            int d=0;
+            int k = 0;
+            int d = 0;
             while (line != null) {
                 k++;
-                if(k%956==0){
+                if (k % 956 == 0) {
                     d++;
-                    System.out.println(d);
+                    System.out.println(d + "%");
                 }
                 tknz = new StringTokenizer(line, "::");
                 user = tknz.nextToken();
@@ -141,10 +140,11 @@ public class SampleData {
                             if (Integer.parseInt(movies.get(j).toString()) < Integer.parseInt(movie)) {
                                 continue;
                             } else if (Integer.parseInt(movies.get(j).toString()) == Integer.parseInt(movie)) {
-                                writer.write(line+"\n\r");
-                                m=j;
+                                writer.write(line + "\n\r");
+                                line = reader.readLine();
+                                m = j;
                                 break;
-                            }else if(Integer.parseInt(movies.get(j).toString()) > Integer.parseInt(movie)){
+                            } else if (Integer.parseInt(movies.get(j).toString()) > Integer.parseInt(movie)) {
                                 break;
                             }
                         }
@@ -153,7 +153,7 @@ public class SampleData {
                         break;
                     }
                 }
-                lastuser = user;
+
             }
             reader.close();
             writer.close();

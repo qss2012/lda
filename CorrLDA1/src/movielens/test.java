@@ -6,26 +6,35 @@ package movielens;
 
 import java.util.Vector;
 
-
 /**
  *
  * @author kaldr
  */
 public class test {
+
     public Vector<Integer>[] z;
-    public test(){
-        z=new Vector[3];
+
+    public test() {
+        z = new Vector[3];
     }
+
     public static void main(String args[]) {
         int i;
         double a;
-        test test=new test();
-        test.z[1]=new Vector();
-       test.z[1].add(12);
-       for(i=0;i<20;i++){
-           a=Math.random();
-        System.out.println(a);
-       }
-       
+        test test = new test();
+        test.z[1] = new Vector();
+        test.z[1].add(12);
+        for (i = 0; i < 20; i++) {
+            a = Math.random();
+            System.out.println(a);
+        }
+        i = 1;
+        for (i = 0; i < 100; i++) {
+           
+                System.out.println(i %5);
+           
+        }
     }
 }
+
+
