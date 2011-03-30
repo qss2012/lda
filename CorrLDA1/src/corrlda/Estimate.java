@@ -13,7 +13,6 @@ import java.io.OutputStreamWriter;
  * @author kaldr
  */
 public class Estimate {
-
     public void estimate(CorrLDA corrlda) {
         Integer movieForU = 0;
         int topic = 0;

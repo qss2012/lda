@@ -18,12 +18,14 @@ public class test {
     }
     public static void main(String args[]) {
         int i;
+        double a;
         test test=new test();
         test.z[1]=new Vector();
        test.z[1].add(12);
        for(i=0;i<20;i++){
-
+           a=Math.random();
+        System.out.println(a);
        }
-       System.out.println(i);
+       
     }
 }
