@@ -4,6 +4,10 @@
  */
 package corrlda;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+
 /**
  *
  * @author kaldr
@@ -24,7 +28,7 @@ public class Estimate {
                 for (int m = 0; m < movieForU; m++) {
                     topic = samplingMovieTopic(u, m, corrlda);
                     corrlda.z[u].set(m, topic);
-                    
+
                 }
                 System.out.println("Movie Topic sampled.");
                 if (corrlda.movielens.tagData.user2tag.containsKey(userID)) {
@@ -32,11 +36,11 @@ public class Estimate {
                     for (int t = 0; t < tagForU; t++) {
                         topic = samplingTagTopic(u, t, movieForU, corrlda);
                         corrlda.ztag[u].set(t, topic);
-                        
+
                     }
                     System.out.println("Tag Topic sampled");
                 }
-                System.out.println("User "+u+" complete!");
+                System.out.println("User " + u + " complete!");
             }
             System.out.println("Iteration " + iter + "complete !");
         }
@@ -45,6 +49,54 @@ public class Estimate {
         computeTheta(corrlda);
         computePhi(corrlda);
         computeDigamma(corrlda);
+        saveTheta(corrlda);
+        savePhi(corrlda);
+        saveDigamma(corrlda);
+    }
+
+    public void saveTheta(CorrLDA corrlda) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("Theta.dat"), "UTF-8"));
+            for(int u=0;u<corrlda.userlen;u++){
+                for(int k=0;k<corrlda.K;u++){
+                    String t=Double.toString(corrlda.theta[u][k]);
+                    writer.write(t+"\t");
+                }
+                writer.write("\r\n");
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public void savePhi(CorrLDA corrlda) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("Phi.dat"), "UTF-8"));
+            for(int u=0;u<corrlda.userlen;u++){
+                for(int k=0;k<corrlda.K;u++){
+                    String t=Double.toString(corrlda.theta[u][k]);
+                    writer.write(t+"\t");
+                }
+                writer.write("\r\n");
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public void saveDigamma(CorrLDA corrlda) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("Digamma.dat"), "UTF-8"));
+            for(int u=0;u<corrlda.userlen;u++){
+                for(int k=0;k<corrlda.K;u++){
+                    String t=Double.toString(corrlda.theta[u][k]);
+                    writer.write(t+"\t");
+                }
+                writer.write("\r\n");
+            }
+        } catch (Exception e) {
+        }
     }
 
     public int samplingMovieTopic(int u, int m, CorrLDA corrlda) {
@@ -53,7 +105,7 @@ public class Estimate {
         int topic = corrlda.z[u].get(m);
 
         int movier = Integer.parseInt(corrlda.movielens.userData.userid2doc.get(userID).get(m).toString());
-        int movie=Integer.parseInt(corrlda.movielens.itemData.id_idr.get(movier).toString());
+        int movie = Integer.parseInt(corrlda.movielens.itemData.id_idr.get(movier).toString());
         corrlda.nm_z[movie][topic] -= 1;
         corrlda.nsumm_z[topic] -= 1;
         corrlda.nz_u[u][topic] -= 1;
@@ -75,7 +127,9 @@ public class Estimate {
                 break;
             }
         }
-        if (topic==corrlda.K)topic-=1;
+        if (topic == corrlda.K) {
+            topic -= 1;
+        }
         corrlda.nm_z[movie][topic] += 1;
         corrlda.nsumm_z[topic] += 1;
         corrlda.nz_u[u][topic] += 1;
@@ -95,7 +149,7 @@ public class Estimate {
         double Tgamma = corrlda.taglen * corrlda.gamma;
         double[] p = new double[corrlda.K];
         for (int k = 0; k < corrlda.K; k++) {
-            p[k] = corrlda.nm_z[u][k] / movie * (corrlda.nz_u[u][k] + corrlda.alpha) / (corrlda.nsumz_u[u] + Tgamma);
+            p[k] = corrlda.nz_u[u][k] / movie * (corrlda.nt_z[t][k] + corrlda.gamma) / (corrlda.nsumt_z[k] + Tgamma);
         }
         for (int k = 1; k < corrlda.K; k++) {
             p[k] += p[k - 1];
@@ -106,7 +160,9 @@ public class Estimate {
                 break;
             }
         }
-        if (topic==corrlda.K)topic-=1;
+        if (topic == corrlda.K) {
+            topic -= 1;
+        }
         corrlda.nt_z[tag][topic] += 1;
         corrlda.nsumt_z[topic] += 1;
         return topic;
