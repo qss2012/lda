@@ -54,6 +54,7 @@ public final class CorrLDA {
         Estimate estimate = new Estimate();
         CorrLDA corrlda = new CorrLDA();
         estimate.estimate(corrlda);
+        System.out.println("OMG finished");
     }
 
     public void initialize(Model model) {
@@ -109,10 +110,11 @@ public final class CorrLDA {
             for (int u = 0; u < userlen; u++) {//i is user
                 int userID = Integer.parseInt(userIDset[u].toString());
                 writer.write(u+"::"+userID+"\r\n");
-                int M = model.userData.userid2doc.get(userID).size();//number of movies of a user;
+                int M = model.userData.userid2doc.get(userID).size();//number of movies of a user;corrlda.movielens.userData.userid2doc.get(userID).size();
                 int T = 0;
                 z[u] = new Vector();
                 ztag[u] = new Vector();
+               
                 for (int m = 0; m < M; m++) {
                     int topic = (int) Math.floor(Math.random() * K);
                     int movieIDr = Integer.parseInt(model.userData.userid2doc.get(userID).get(m).toString());

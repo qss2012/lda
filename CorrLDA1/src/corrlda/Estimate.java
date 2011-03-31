@@ -24,6 +24,7 @@ public class Estimate {
             for (int u = 0; u < corrlda.userlen; u++) {
                 int userID = Integer.parseInt(userIDset[u].toString());
                 movieForU = corrlda.movielens.userData.userid2doc.get(userID).size();
+                System.out.println(userID+":"+movieForU+" "+corrlda.z[u].size());
                 for (int m = 0; m < movieForU; m++) {
                     topic = samplingMovieTopic(u, m, corrlda);
                     corrlda.z[u].set(m, topic);
@@ -101,7 +102,7 @@ public class Estimate {
     public int samplingMovieTopic(int u, int m, CorrLDA corrlda) {
         Object[] userIDset = corrlda.movielens.userData.userid2doc.keySet().toArray();
         int userID = Integer.parseInt(userIDset[u].toString());
-        int topic = corrlda.z[u].get(m);
+        int topic = corrlda.z[u].get(m);//*********************************************
 
         int movier = Integer.parseInt(corrlda.movielens.userData.userid2doc.get(userID).get(m).toString());
         int movie = Integer.parseInt(corrlda.movielens.itemData.id_idr.get(movier).toString());
@@ -139,7 +140,7 @@ public class Estimate {
     public int samplingTagTopic(int u, int t, int movie, CorrLDA corrlda) {
         Object[] userIDset = corrlda.movielens.userData.userid2doc.keySet().toArray();
         int userID = Integer.parseInt(userIDset[u].toString());
-        int topic = corrlda.ztag[u].get(t);
+        int topic = corrlda.ztag[u].get(t);//*********************************************
 
         int tag = Integer.parseInt(corrlda.movielens.tagData.user2tag.get(userID).get(t).toString());
         corrlda.nt_z[tag][topic] -= 1;

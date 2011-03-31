@@ -55,6 +55,7 @@ public class orII {
                 if (listOfFiles[i].isFile()) {
                     if (listOfFiles[i].getName().equals("moviemap.dat")) {
                         findit = 1;
+                        System.out.println("moviemap.dat already exists.");
                     }
                 }
             }
@@ -73,7 +74,7 @@ public class orII {
                 String id = tknr.nextToken();
                 String word = tknr.nextToken();
                 if (findit == 0) {
-                    writer.write(id + "::" + word+"\n");
+                    writer.write(id + "::" + word+"\r\n");
                 }
                 Integer intID = Integer.parseInt(id);
                 id_title.put(intID, word);

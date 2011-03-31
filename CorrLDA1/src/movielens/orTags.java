@@ -74,7 +74,7 @@ public class orTags {
 
                     if (!tags2id.containsKey(tag)) {
                         id2tags.put(no, tag);
-                         if(findtagfile==0)writer.write(no+"::"+tag+"\n");
+                         if(findtagfile==0)writer.write(no+"::"+tag+"\r\n");
                         tags2id.put(tag, no);
                         no++;
                     }

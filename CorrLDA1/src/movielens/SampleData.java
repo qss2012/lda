@@ -70,7 +70,7 @@ public class SampleData {
             String movieline = Moviereader.readLine();
             while (movieline != null) {
                 double randnum = Math.random();
-                if (randnum < 0.3) {
+                if (randnum < 0.5) {
                     StringTokenizer tknz = new StringTokenizer(movieline, "::");
                     String movie = tknz.nextToken();
                     movies.add(Integer.parseInt(movie));
@@ -81,7 +81,7 @@ public class SampleData {
             }
             while (line != null) {
                 double randnum = Math.random();
-                if (randnum < 0.05) {
+                if (randnum < 0.1) {
                     StringTokenizer tknz = new StringTokenizer(line, " ");
                     String user = tknz.nextToken();
                     users.add(Integer.parseInt(user));
@@ -123,9 +123,7 @@ public class SampleData {
             int k = 0;
             int d = 0;
             while (line != null) {
-                k++;
-                if(k%956==0)
-                System.out.println(k);
+                
                 tknz = new StringTokenizer(line, "::");
                 user = tknz.nextToken();
                 movie = tknz.nextToken();
