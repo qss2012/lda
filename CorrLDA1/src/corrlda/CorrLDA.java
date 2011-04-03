@@ -105,20 +105,25 @@ public final class CorrLDA {
         ztag = new Vector[userlen];
         Object[] userIDset = model.userData.userid2doc.keySet().toArray();
         try {
-            BufferedWriter writer=new BufferedWriter(new OutputStreamWriter(new FileOutputStream("usermap.dat"),"UTF-8"));
-
-            for (int u = 0; u < userlen; u++) {//i is user
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("usermap.dat"), "UTF-8"));
+            int u, m, t;
+            for (u = 0; u < userlen; u++) {//i is user
                 int userID = Integer.parseInt(userIDset[u].toString());
-                writer.write(u+"::"+userID+"\r\n");
+
+
                 int M = model.userData.userid2doc.get(userID).size();//number of movies of a user;corrlda.movielens.userData.userid2doc.get(userID).size();
+                writer.write(u + "::" + userID + "\r\n");
                 int T = 0;
                 z[u] = new Vector();
                 ztag[u] = new Vector();
-               
-                for (int m = 0; m < M; m++) {
+
+                for (m = 0; m < M; m++) {
+
                     int topic = (int) Math.floor(Math.random() * K);
                     int movieIDr = Integer.parseInt(model.userData.userid2doc.get(userID).get(m).toString());
+
                     int movieID = model.itemData.id_idr.get(movieIDr);
+
                     z[u].add(topic);
                     //number of topic occured in user u
                     nz_u[u][topic] += 1;
@@ -127,9 +132,12 @@ public final class CorrLDA {
                     nm_z[movieID][topic] += 1;
                     nsumm_z[topic] += 1;
                 }
+
+
+
                 if (model.tagData.user2tag.containsKey(userID)) {
                     T = model.tagData.user2tag.get(userID).size();
-                    for (int t = 0; t < T; t++) {
+                    for (t = 0; t < T; t++) {
                         int zID = (int) Math.floor(Math.random() * M);
                         int topic = z[u].get(zID);
                         ztag[u].add(topic);
@@ -138,9 +146,12 @@ public final class CorrLDA {
                         nsumt_z[topic] += 1;
                     }
                 }
+
             }
             writer.close();
         } catch (Exception e) {
+            System.out.println("Error while reading dictionary:" + e.getMessage());
+            e.printStackTrace();
         }
         System.out.println("CorrLda is totally initialized.");
     }

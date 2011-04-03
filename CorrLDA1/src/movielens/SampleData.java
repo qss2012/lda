@@ -68,17 +68,18 @@ public class SampleData {
             BufferedWriter Moviewriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Sampled/movies.dat"), "UTF-8"));
             String line = reader.readLine();
             String movieline = Moviereader.readLine();
+            //Choose half of the movies
             while (movieline != null) {
                 double randnum = Math.random();
                 if (randnum < 0.5) {
                     StringTokenizer tknz = new StringTokenizer(movieline, "::");
                     String movie = tknz.nextToken();
                     movies.add(Integer.parseInt(movie));
-
                     Moviewriter.write(movieline + "\r\n");
                 }
                 movieline = Moviereader.readLine();
             }
+            
             while (line != null) {
                 double randnum = Math.random();
                 if (randnum < 0.1) {
@@ -90,7 +91,7 @@ public class SampleData {
                         String movieStr = tknz.nextToken();
                         int movie=Integer.parseInt(movieStr);
                         if (movies.contains(movie)) {
-                            writer.write(movie + " ");
+                            writer.write(movie+ " ");
                         }
                     }
                     writer.write("\r\n");

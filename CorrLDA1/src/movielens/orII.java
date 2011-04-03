@@ -30,20 +30,7 @@ public class orII {
         title_id = new HashMap<String, Integer>();
         id_idr=new HashMap<Integer,Integer>();
     }
-    //get id
-
-    public Object[] getIDKey() {
-        return id_title.keySet().toArray();
-    }
-
-    public Integer getID(String word) {
-        return title_id.get(word);
-    }
-    //get title
-
-    public String getID(Integer id) {
-        return id_title.get(id);
-    }
+    
     //readMovie
 
     public boolean readMovie(String filename) {
@@ -73,13 +60,14 @@ public class orII {
                 StringTokenizer tknr = new StringTokenizer(line, "::");
                 String id = tknr.nextToken();
                 String word = tknr.nextToken();
-                if (findit == 0) {
-                    writer.write(id + "::" + word+"\r\n");
-                }
+                
                 Integer intID = Integer.parseInt(id);
                 id_title.put(intID, word);
                 title_id.put(word, intID);
                 id_idr.put(intID,i);
+                if (findit == 0) {
+                    writer.write(i + "::" + intID+"\r\n");
+                }
                 line = reader.readLine();
                 i++;
             }
