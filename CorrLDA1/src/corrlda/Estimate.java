@@ -13,24 +13,31 @@ import java.io.OutputStreamWriter;
  * @author kaldr
  */
 public class Estimate {
+
     public void estimate(CorrLDA corrlda) {
         Integer movieForU = 0;
         int topic = 0;
+        int ec = 0;
         Object[] userIDset = corrlda.movielens.userData.userid2doc.keySet().toArray();
         System.out.println("***************************\nSampling " + corrlda.nitter + " iteration!\n***************************");
-        for (int iter = 1; iter < corrlda.nitter + 1; iter++) {
+        int itertimes = corrlda.nitter;
+        itertimes = 4;
+        int halfitertimes = itertimes / 2;
+        int iter = 1;
+        for (iter = 1; iter < itertimes + 1; iter++) {
+            long startTime = System.currentTimeMillis();
             System.out.println("Iteration " + iter + " ...");
             //System.out.println(corrlda.movielens.userData.userid2doc.get(1).size());
             for (int u = 0; u < corrlda.userlen; u++) {
                 int userID = Integer.parseInt(userIDset[u].toString());
                 movieForU = corrlda.movielens.userData.userid2doc.get(userID).size();
-                System.out.println(userID+":"+movieForU+" "+corrlda.z[u].size());
+
                 for (int m = 0; m < movieForU; m++) {
                     topic = samplingMovieTopic(u, m, corrlda);
                     corrlda.z[u].set(m, topic);
 
                 }
-                System.out.println("Movie Topic sampled.");
+
                 if (corrlda.movielens.tagData.user2tag.containsKey(userID)) {
                     int tagForU = corrlda.movielens.tagData.user2tag.get(userID).size();
                     for (int t = 0; t < tagForU; t++) {
@@ -38,30 +45,38 @@ public class Estimate {
                         corrlda.ztag[u].set(t, topic);
 
                     }
-                    System.out.println("Tag Topic sampled");
                 }
-                System.out.println("User " + u + " complete!");
             }
-            System.out.println("Iteration " + iter + "complete !");
+            ec = ec + 1;
+            long endTime = System.currentTimeMillis();
+            double time = (endTime - startTime) / 1000;
+            double timeover = time * (itertimes - ec) / 60;
+            System.out.println("Ecalepsed time: " + (time) + "s, Completed in " + timeover + " m");
+            if (iter == halfitertimes) {
+                computeTheta(corrlda, iter);
+                computePhi(corrlda, iter);
+                computeDigamma(corrlda, iter);
+            }
         }
         System.out.println("Gibbs sampling completed!\n");
         System.out.println("Saving the final model!\n");
-        computeTheta(corrlda);
-        computePhi(corrlda);
-        computeDigamma(corrlda);
-        saveTheta(corrlda);
-        savePhi(corrlda);
-        saveDigamma(corrlda);
+        computeTheta(corrlda, iter-1);
+        computePhi(corrlda, iter-1);
+        computeDigamma(corrlda, iter-1);
     }
 
-    public void saveTheta(CorrLDA corrlda) {
+    public void saveTheta(CorrLDA corrlda, int iter) {
+        String file = "Theta.dat";
+        String pendix = Integer.toString(iter);
+        file = file + "_" + pendix;
+        System.out.println("Saving theta...");
         try {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("Theta.dat"), "UTF-8"));
-            for(int u=0;u<corrlda.userlen;u++){
-                for(int k=0;k<corrlda.K;u++){
-                    String t=Double.toString(corrlda.theta[u][k]);
-                    writer.write(t+"\t");
+                    new FileOutputStream(file), "UTF-8"));
+            for (int u = 0; u < corrlda.userlen; u++) {
+                for (int k = 0; k < corrlda.K; u++) {
+                    String t = Double.toString(corrlda.theta[u][k]);
+                    writer.write(t + "\t");
                 }
                 writer.write("\r\n");
             }
@@ -69,14 +84,18 @@ public class Estimate {
         }
     }
 
-    public void savePhi(CorrLDA corrlda) {
+    public void savePhi(CorrLDA corrlda, int iter) {
+        System.out.println("Saving phi...");
         try {
+            String file = "Phi.dat";
+            String pendix = Integer.toString(iter);
+            file = file + "_" + pendix;
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("Phi.dat"), "UTF-8"));
-            for(int u=0;u<corrlda.userlen;u++){
-                for(int k=0;k<corrlda.K;u++){
-                    String t=Double.toString(corrlda.theta[u][k]);
-                    writer.write(t+"\t");
+                    new FileOutputStream(file), "UTF-8"));
+            for (int u = 0; u < corrlda.userlen; u++) {
+                for (int k = 0; k < corrlda.K; u++) {
+                    String t = Double.toString(corrlda.theta[u][k]);
+                    writer.write(t + "\t");
                 }
                 writer.write("\r\n");
             }
@@ -84,14 +103,18 @@ public class Estimate {
         }
     }
 
-    public void saveDigamma(CorrLDA corrlda) {
+    public void saveDigamma(CorrLDA corrlda, int iter) {
         try {
+            String file = "Digamma.dat";
+            String pendix = Integer.toString(iter);
+            file = file + "_" + pendix;
+            System.out.println("Saving digamma...");
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("Digamma.dat"), "UTF-8"));
-            for(int u=0;u<corrlda.userlen;u++){
-                for(int k=0;k<corrlda.K;u++){
-                    String t=Double.toString(corrlda.theta[u][k]);
-                    writer.write(t+"\t");
+                    new FileOutputStream(file), "UTF-8"));
+            for (int u = 0; u < corrlda.userlen; u++) {
+                for (int k = 0; k < corrlda.K; u++) {
+                    String t = Double.toString(corrlda.theta[u][k]);
+                    writer.write(t + "\t");
                 }
                 writer.write("\r\n");
             }
@@ -168,27 +191,31 @@ public class Estimate {
         return topic;
     }
 
-    public void computePhi(CorrLDA corrlda) {
+    public void computePhi(CorrLDA corrlda, int iter) {
         for (int m = 0; m < corrlda.movielen; m++) {
             for (int k = 0; k < corrlda.K; k++) {
                 corrlda.fine[m][k] = (corrlda.nm_z[m][k] + corrlda.beta) / (corrlda.nsumm_z[k] + corrlda.movielen * corrlda.beta);
             }
         }
+        savePhi(corrlda, iter);
     }
 
-    public void computeTheta(CorrLDA corrlda) {
+    public void computeTheta(CorrLDA corrlda, int iter) {
         for (int u = 0; u < corrlda.userlen; u++) {
             for (int k = 0; k < corrlda.K; k++) {
                 corrlda.theta[u][k] = (corrlda.nz_u[u][k] + corrlda.alpha) / (corrlda.nsumz_u[u] + corrlda.K * corrlda.alpha);
             }
         }
+
+        saveTheta(corrlda, iter);
     }
 
-    public void computeDigamma(CorrLDA corrlda) {
+    public void computeDigamma(CorrLDA corrlda, int iter) {
         for (int t = 0; t < corrlda.taglen; t++) {
             for (int k = 0; k < corrlda.K; k++) {
-                corrlda.digamma[t][k] = (corrlda.nt_z[t][k] + corrlda.gamma) / (corrlda.nsumt_z[t] + corrlda.taglen * corrlda.gamma);
+                corrlda.digamma[t][k] = (corrlda.nt_z[t][k] + corrlda.gamma) / (corrlda.nsumt_z[k] + corrlda.taglen * corrlda.gamma);
             }
         }
+        saveDigamma(corrlda, iter);
     }
 }
