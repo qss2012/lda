@@ -24,16 +24,8 @@ public class test {
         test test = new test();
         test.z[1] = new Vector();
         test.z[1].add(12);
-        for (i = 0; i < 20; i++) {
-            a = Math.random();
-            System.out.println(a);
-        }
-        i = 1;
-        for (i = 0; i < 100; i++) {
-           
-                System.out.println(i %5);
-           
-        }
+        test.z[1].add(3);
+        System.out.println(test.z[1].contains(11));
     }
 }
 

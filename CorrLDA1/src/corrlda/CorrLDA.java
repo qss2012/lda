@@ -121,7 +121,7 @@ public final class CorrLDA {
 
                     int topic = (int) Math.floor(Math.random() * K);
                     int movieIDr = Integer.parseInt(model.userData.userid2doc.get(userID).get(m).toString());
-
+                    
                     int movieID = model.itemData.id_idr.get(movieIDr);
 
                     z[u].add(topic);
@@ -133,7 +133,7 @@ public final class CorrLDA {
                     nsumm_z[topic] += 1;
                 }
 
-
+               
 
                 if (model.tagData.user2tag.containsKey(userID)) {
                     T = model.tagData.user2tag.get(userID).size();

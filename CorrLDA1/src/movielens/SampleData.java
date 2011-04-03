@@ -13,7 +13,10 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.StringTokenizer;
+import java.util.Vector;
 
 /**
  *
@@ -22,10 +25,10 @@ import java.util.StringTokenizer;
 public class SampleData {
 
     ArrayList users;
-    ArrayList movies;
+    Vector movies;
 
     public SampleData() {
-        movies = new ArrayList();
+        movies = new Vector();
         users = new ArrayList();
     }
 
@@ -60,6 +63,7 @@ public class SampleData {
     }
 
     public void SampleUser(String filename) {
+        int maxMovie=0;
         try {
             System.out.println("Start Sampling user...");
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
@@ -68,42 +72,62 @@ public class SampleData {
             BufferedWriter Moviewriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Sampled/movies.dat"), "UTF-8"));
             String line = reader.readLine();
             String movieline = Moviereader.readLine();
+            StringTokenizer tknz;
             //Choose half of the movies
             while (movieline != null) {
                 double randnum = Math.random();
-                if (randnum < 0.5) {
-                    StringTokenizer tknz = new StringTokenizer(movieline, "::");
-                    String movie = tknz.nextToken();
-                    movies.add(Integer.parseInt(movie));
-                    Moviewriter.write(movieline + "\r\n");
+                if (randnum < 0.3) {
+                    
+                    tknz = new StringTokenizer(movieline,"::");
+                    String movieid = tknz.nextToken();
+                    String moviename=tknz.nextToken();
+                    String moviegenre=tknz.nextToken();
+                    maxMovie=Integer.parseInt(movieid);
+                    movies.add(maxMovie);
+                   
+                    Moviewriter.write(movieid+"::"+moviename+"::"+moviegenre);
+                    Moviewriter.flush();
+                    Moviewriter.newLine();
                 }
                 movieline = Moviereader.readLine();
             }
+            System.out.println("Last movie is "+maxMovie);
+            System.out.println("Size is "+movies.size());
             
             while (line != null) {
                 double randnum = Math.random();
-                if (randnum < 0.1) {
-                    StringTokenizer tknz = new StringTokenizer(line, " ");
+                if (randnum < 0.05) {
+                    tknz = new StringTokenizer(line, " ");
                     String user = tknz.nextToken();
                     users.add(Integer.parseInt(user));
                     writer.write(user + " ");
                     while (tknz.hasMoreTokens()) {
                         String movieStr = tknz.nextToken();
-                        int movie=Integer.parseInt(movieStr);
-                        if (movies.contains(movie)) {
-                            writer.write(movie+ " ");
+                        int movie = Integer.parseInt(movieStr);
+                        
+                        if (movie<=maxMovie) {
+                            
+                            if(movies.contains(movie)){
+                                if(movie>maxMovie)
+                                System.out.println("Wrong Writing "+movie);
+                            writer.write(movie + " ");
+                            }
+                        }else{
+                            System.out.println(movie+" is bigger");
                         }
                     }
                     writer.write("\r\n");
                 }
                 line = reader.readLine();
             }
+             
             reader.close();
             writer.close();
             System.out.println("Sampled");
             Collections.sort(users);
-            Collections.sort(movies);
+            Collections.sort( movies);
         } catch (Exception e) {
+            System.out.println("Error while reading dictionary:" + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -124,7 +148,7 @@ public class SampleData {
             int k = 0;
             int d = 0;
             while (line != null) {
-                
+
                 tknz = new StringTokenizer(line, "::");
                 user = tknz.nextToken();
                 movie = tknz.nextToken();
@@ -133,7 +157,7 @@ public class SampleData {
                         continue;
                     } else if (Integer.parseInt(users.get(i).toString()) == Integer.parseInt(user)) {
                         n = i;
-                        m=0;
+                        m = 0;
                         for (j = m; j < movies.size(); j++) {
                             if (Integer.parseInt(movies.get(j).toString()) < Integer.parseInt(movie)) {
                                 continue;
