@@ -21,7 +21,7 @@ public class Estimate {
         Object[] userIDset = corrlda.movielens.userData.userid2doc.keySet().toArray();
         System.out.println("***************************\nSampling " + corrlda.nitter + " iteration!\n***************************");
         int itertimes = corrlda.nitter;
-        itertimes = 4;
+        //itertimes = 4;
         int halfitertimes = itertimes / 2;
         int iter = 1;
         for (iter = 1; iter < itertimes + 1; iter++) {
@@ -35,21 +35,19 @@ public class Estimate {
                 for (int m = 0; m < movieForU; m++) {
                     topic = samplingMovieTopic(u, m, corrlda);
                     corrlda.z[u].set(m, topic);
-
                 }
-
                 if (corrlda.movielens.tagData.user2tag.containsKey(userID)) {
                     int tagForU = corrlda.movielens.tagData.user2tag.get(userID).size();
                     for (int t = 0; t < tagForU; t++) {
                         topic = samplingTagTopic(u, t, movieForU, corrlda);
                         corrlda.ztag[u].set(t, topic);
-
                     }
                 }
             }
             ec = ec + 1;
             long endTime = System.currentTimeMillis();
-            double time = (endTime - startTime) / 1000;
+            double time = 0;
+            time = time + (endTime - startTime) / 1000;
             double timeover = time * (itertimes - ec) / 60;
             System.out.println("Ecalepsed time: " + (time) + "s, Completed in " + timeover + " m");
             if (iter == halfitertimes) {
@@ -60,9 +58,10 @@ public class Estimate {
         }
         System.out.println("Gibbs sampling completed!\n");
         System.out.println("Saving the final model!\n");
-        computeTheta(corrlda, iter-1);
-        computePhi(corrlda, iter-1);
-        computeDigamma(corrlda, iter-1);
+        computeTheta(corrlda, iter - 1);
+        computePhi(corrlda, iter - 1);
+        computeDigamma(corrlda, iter - 1);
+        saveModel(corrlda);
     }
 
     public void saveTheta(CorrLDA corrlda, int iter) {
@@ -77,8 +76,10 @@ public class Estimate {
                 for (int k = 0; k < corrlda.K; u++) {
                     String t = Double.toString(corrlda.theta[u][k]);
                     writer.write(t + "\t");
+                    writer.flush();
                 }
                 writer.write("\r\n");
+                writer.newLine();
             }
         } catch (Exception e) {
         }
@@ -96,8 +97,11 @@ public class Estimate {
                 for (int k = 0; k < corrlda.K; u++) {
                     String t = Double.toString(corrlda.theta[u][k]);
                     writer.write(t + "\t");
+                    writer.flush();
+
                 }
                 writer.write("\r\n");
+                writer.newLine();
             }
         } catch (Exception e) {
         }
@@ -114,9 +118,11 @@ public class Estimate {
             for (int u = 0; u < corrlda.userlen; u++) {
                 for (int k = 0; k < corrlda.K; u++) {
                     String t = Double.toString(corrlda.theta[u][k]);
-                    writer.write(t + "\t");
+                    writer.write(t + " ");
+                    writer.flush();
                 }
                 writer.write("\r\n");
+                writer.newLine();
             }
         } catch (Exception e) {
         }
@@ -164,7 +170,6 @@ public class Estimate {
         Object[] userIDset = corrlda.movielens.userData.userid2doc.keySet().toArray();
         int userID = Integer.parseInt(userIDset[u].toString());
         int topic = corrlda.ztag[u].get(t);//*********************************************
-
         int tag = Integer.parseInt(corrlda.movielens.tagData.user2tag.get(userID).get(t).toString());
         corrlda.nt_z[tag][topic] -= 1;
         corrlda.nsumt_z[topic] -= 1;
@@ -173,11 +178,14 @@ public class Estimate {
         double[] p = new double[corrlda.K];
         for (int k = 0; k < corrlda.K; k++) {
             p[k] = corrlda.nz_u[u][k] / movie * (corrlda.nt_z[t][k] + corrlda.gamma) / (corrlda.nsumt_z[k] + Tgamma);
+            System.out.print(p[k]+" ");
         }
+        System.out.println("\n\r");
         for (int k = 1; k < corrlda.K; k++) {
             p[k] += p[k - 1];
         }
         double sample = Math.random() * p[corrlda.K - 1];
+        System.out.println(sample);
         for (topic = 0; topic < corrlda.K; topic++) {
             if (p[topic] > sample) {
                 break;
@@ -217,5 +225,71 @@ public class Estimate {
             }
         }
         saveDigamma(corrlda, iter);
+    }
+
+    public void saveModel(CorrLDA corrlda) {
+        String file = "model.dat";
+        try {
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+            writer.write(corrlda.movielen + "::" + corrlda.userlen + "::" + corrlda.taglen + "\r\n");
+            writer.write("nz_u\r\n");
+            for (int i = 0; i < corrlda.userlen; i++) {
+                for (int j = 0; j < corrlda.K; j++) {
+                    writer.write(corrlda.nz_u[i][j] + " ");
+                }
+                writer.write("\r\n");
+            }
+            writer.write("nm_z\r\n");
+            for (int i = 0; i < corrlda.movielen; i++) {
+                for (int j = 0; j < corrlda.K; j++) {
+                    writer.write(corrlda.nm_z[i][j] + " ");
+                }
+                writer.write("\r\n");
+            }
+            writer.write("nt_z\r\n");
+            for (int i = 0; i < corrlda.taglen; i++) {
+                for (int j = 0; j < corrlda.K; j++) {
+                    writer.write(corrlda.nt_z[i][j] + " ");
+                }
+                writer.write("\r\n");
+            }
+            writer.write("nsumz_u\r\n");
+            for (int i = 0; i < corrlda.userlen; i++) {
+                writer.write(corrlda.nsumz_u[i] + " ");
+            }
+            writer.write("\r\n");
+            writer.write("nsumm_z\r\n");
+            for (int i = 0; i < corrlda.K; i++) {
+                writer.write(corrlda.nsumm_z[i] + " ");
+            }
+            writer.write("\r\n");
+            writer.write("nsumt_z\r\n");
+            for (int i = 0; i < corrlda.K; i++) {
+                writer.write(corrlda.nsumt_z[i] + " ");
+            }
+            writer.write("\r\n");
+            writer.write("z\r\n");
+            for(int i=0;i<corrlda.userlen;i++){
+                int k=corrlda.z[i].size();
+                for(int j=0;j<k;j++){
+                    writer.write(corrlda.z[i].get(j)+" ");
+                }
+                writer.write("\r\n");
+            }
+            writer.write("\r\n");
+            writer.write("ztag\r\n");
+            for(int i=0;i<corrlda.userlen;i++){
+                int k=corrlda.ztag[i].size();
+                for(int j=0;j<k;j++){
+                    writer.write(corrlda.ztag[i].get(j)+" ");
+                }
+                writer.write("\r\n");
+            }
+            writer.write("\r\n");
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Error while reading dictionary:" + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

@@ -39,7 +39,7 @@ public final class CorrLDA {
     public int[] nsumm_z;//sum of all the movies assigned to topic k;
     public int[] nsumt_z;//sum of all the tags assigned to topic k;
     //configuration
-    public int nitter = 2000;
+    public int nitter = 1;
     public Model movielens;
 
     public CorrLDA() {
@@ -121,7 +121,7 @@ public final class CorrLDA {
 
                     int topic = (int) Math.floor(Math.random() * K);
                     int movieIDr = Integer.parseInt(model.userData.userid2doc.get(userID).get(m).toString());
-                    
+
                     int movieID = model.itemData.id_idr.get(movieIDr);
 
                     z[u].add(topic);
@@ -132,18 +132,17 @@ public final class CorrLDA {
                     nm_z[movieID][topic] += 1;
                     nsumm_z[topic] += 1;
                 }
-
-               
-
                 if (model.tagData.user2tag.containsKey(userID)) {
                     T = model.tagData.user2tag.get(userID).size();
                     for (t = 0; t < T; t++) {
                         int zID = (int) Math.floor(Math.random() * M);
                         int topic = z[u].get(zID);
-                        ztag[u].add(topic);
+                        ztag[u].add(topic);                      
+                        int tag = Integer.parseInt(model.tagData.user2tag.get(userID).get(t).toString());
                         //number of tag assigend to topic
-                        nt_z[t][topic] += 1;
+                        nt_z[tag][topic] += 1;
                         nsumt_z[topic] += 1;
+                        
                     }
                 }
 
@@ -153,6 +152,13 @@ public final class CorrLDA {
             System.out.println("Error while reading dictionary:" + e.getMessage());
             e.printStackTrace();
         }
+         for(int t=0;t<taglen;t++){
+             for(int k=0;k<K;k++)
+             System.out.print(nt_z[t][k]+" ");
+             System.out.print("\r\n");
+         }
+        
         System.out.println("CorrLda is totally initialized.");
+       
     }
 }
