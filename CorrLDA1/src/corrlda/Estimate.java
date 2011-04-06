@@ -22,7 +22,7 @@ public class Estimate {
         System.out.println("***************************\nSampling " + corrlda.nitter + " iteration!\n***************************");
         int itertimes = corrlda.nitter;
         //itertimes = 4;
-        int halfitertimes = itertimes / 2;
+        //int halfitertimes = itertimes / 2;
         int iter = 1;
         for (iter = 1; iter < itertimes + 1; iter++) {
             long startTime = System.currentTimeMillis();
@@ -50,7 +50,7 @@ public class Estimate {
             time = time + (endTime - startTime) / 1000;
             double timeover = time * (itertimes - ec) / 60;
             System.out.println("Ecalepsed time: " + (time) + "s, Completed in " + timeover + " m");
-            if (iter == halfitertimes) {
+            if (iter%5==0) {
                 computeTheta(corrlda, iter);
                 computePhi(corrlda, iter);
                 computeDigamma(corrlda, iter);
@@ -173,19 +173,18 @@ public class Estimate {
         int tag = Integer.parseInt(corrlda.movielens.tagData.user2tag.get(userID).get(t).toString());
         corrlda.nt_z[tag][topic] -= 1;
         corrlda.nsumt_z[topic] -= 1;
-
+        double movie2=(double)movie;
         double Tgamma = corrlda.taglen * corrlda.gamma;
         double[] p = new double[corrlda.K];
         for (int k = 0; k < corrlda.K; k++) {
-            p[k] = corrlda.nz_u[u][k] / movie * (corrlda.nt_z[t][k] + corrlda.gamma) / (corrlda.nsumt_z[k] + Tgamma);
-            System.out.print(p[k]+" ");
+            p[k] = corrlda.nz_u[u][k]/movie2* (corrlda.nt_z[t][k] + corrlda.gamma) / (corrlda.nsumt_z[k] + Tgamma);            
         }
-        System.out.println("\n\r");
+        
         for (int k = 1; k < corrlda.K; k++) {
             p[k] += p[k - 1];
         }
         double sample = Math.random() * p[corrlda.K - 1];
-        System.out.println(sample);
+        
         for (topic = 0; topic < corrlda.K; topic++) {
             if (p[topic] > sample) {
                 break;

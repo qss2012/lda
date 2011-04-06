@@ -127,7 +127,7 @@ public final class CorrLDA {
                     z[u].add(topic);
                     //number of topic occured in user u
                     nz_u[u][topic] += 1;
-                    nsumz_u[topic] += 1;
+                    nsumz_u[u] += 1;
                     //number of movie assigned to topic
                     nm_z[movieID][topic] += 1;
                     nsumm_z[topic] += 1;
@@ -152,11 +152,7 @@ public final class CorrLDA {
             System.out.println("Error while reading dictionary:" + e.getMessage());
             e.printStackTrace();
         }
-         for(int t=0;t<taglen;t++){
-             for(int k=0;k<K;k++)
-             System.out.print(nt_z[t][k]+" ");
-             System.out.print("\r\n");
-         }
+        
         
         System.out.println("CorrLda is totally initialized.");
        
