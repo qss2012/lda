@@ -50,7 +50,7 @@ public class Estimate {
             time = time + (endTime - startTime) / 1000;
             double timeover = time * (itertimes - ec) / 60;
             System.out.println("Ecalepsed time: " + (time) + "s, Completed in " + timeover + " m");
-            if (iter%5==0) {
+            if (iter%50==0) {
                 computeTheta(corrlda, iter);
                 computePhi(corrlda, iter);
                 computeDigamma(corrlda, iter);
@@ -73,13 +73,13 @@ public class Estimate {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(file), "UTF-8"));
             for (int u = 0; u < corrlda.userlen; u++) {
-                for (int k = 0; k < corrlda.K; u++) {
+                for (int k = 0; k < corrlda.K; k++) {
                     String t = Double.toString(corrlda.theta[u][k]);
                     writer.write(t + "\t");
                     writer.flush();
                 }
                 writer.write("\r\n");
-                writer.newLine();
+                writer.flush();
             }
         } catch (Exception e) {
         }
@@ -94,14 +94,14 @@ public class Estimate {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(file), "UTF-8"));
             for (int u = 0; u < corrlda.userlen; u++) {
-                for (int k = 0; k < corrlda.K; u++) {
+                for (int k = 0; k < corrlda.K; k++) {
                     String t = Double.toString(corrlda.theta[u][k]);
                     writer.write(t + "\t");
                     writer.flush();
 
                 }
                 writer.write("\r\n");
-                writer.newLine();
+                writer.flush();
             }
         } catch (Exception e) {
         }
@@ -116,13 +116,14 @@ public class Estimate {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(file), "UTF-8"));
             for (int u = 0; u < corrlda.userlen; u++) {
-                for (int k = 0; k < corrlda.K; u++) {
+                for (int k = 0; k < corrlda.K; k++) {
                     String t = Double.toString(corrlda.theta[u][k]);
+
                     writer.write(t + " ");
                     writer.flush();
                 }
-                writer.write("\r\n");
-                writer.newLine();
+               writer.write("\r\n");
+                writer.flush();
             }
         } catch (Exception e) {
         }

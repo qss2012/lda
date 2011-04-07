@@ -158,27 +158,27 @@
 11457 8368 harry potter
 11577 1207 classic
 11577 923 classic
-11613 1035 Oscar (Best Directing) Oscar (Best Picture)
+11613 1035 Oscar (Best Directing)::Oscar (Best Picture)
 11613 104 golf
 11613 1079 Oscar (Best Supporting Actor)
-11613 1090 Oscar (Best Directing) Oscar (Best Picture)
+11613 1090 Oscar (Best Directing)::Oscar (Best Picture)
 11613 1096 Oscar (Best Actress)
 11613 110 Oscar (Best Picture)
 11613 1147 boxing
-11613 1183 Oscar (Best Cinematography) Oscar (Best Picture) Oscar (Best Supporting Actress)
-11613 1193 book Oscar (Best Actor) Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture)
+11613 1183 Oscar (Best Cinematography)::Oscar (Best Picture)::Oscar (Best Supporting Actress)
+11613 1193 book Oscar (Best Actor)::Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)
 11613 1204 Oscar (Best Picture)
 11613 1207 Oscar (Best Actor)
 11613 1213 organized crime Oscar (Best Supporting Actor)
 11613 1220 Saturday Night Live
-11613 1221 Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Supporting Actor)
-11613 1225 Oscar (Best Actor) Oscar (Best Directing) Oscar (Best Picture)
+11613 1221 Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Supporting Actor)
+11613 1225 Oscar (Best Actor)::Oscar (Best Directing)::Oscar (Best Picture)
 11613 1228 boxing Oscar (Best Actor)
 11613 1230 Oscar (Best Picture)
 11613 1234 Oscar (Best Picture)
-11613 1242 Oscar (Best Cinematography) Oscar (Best Supporting Actor)
+11613 1242 Oscar (Best Cinematography)::Oscar (Best Supporting Actor)
 11613 1249 remade
-11613 1250 Oscar (Best Cinematography) Oscar (Best Picture)
+11613 1250 Oscar (Best Cinematography)::Oscar (Best Picture)
 11613 1263 Oscar (Best Picture)
 11613 1266 Oscar (Best Picture)
 11613 1272 Oscar (Best Picture)
@@ -187,29 +187,29 @@
 11613 1287 Oscar (Best Picture)
 11613 1288 mockumentary rock and roll
 11613 1292 television
-11613 1293 Oscar (Best Actor) Oscar (Best Cinematography) Oscar (Best Picture)
+11613 1293 Oscar (Best Actor)::Oscar (Best Cinematography)::Oscar (Best Picture)
 11613 1302 baseball
 11613 1393 Oscar (Best Supporting Actor)
 11613 1449 mockumentary
 11613 1466 Mafia
 11613 1682 television
-11613 1721 Oscar (Best Cinematography) Oscar (Best Picture)
+11613 1721 Oscar (Best Cinematography)::Oscar (Best Picture)
 11613 1732 bowling
 11613 1925 Oscar (Best Picture)
-11613 1927 Oscar (Best Directing) Oscar (Best Picture)
+11613 1927 Oscar (Best Directing)::Oscar (Best Picture)
 11613 1929 Oscar (Best Picture)
 11613 1931 Oscar (Best Picture)
 11613 1932 Oscar (Best Picture)
-11613 1933 Oscar (Best Picture) Oscar (Best Supporting Actor)
-11613 1935 Oscar (Best Cinematography) Oscar (Best Picture) Oscar (Best Supporting Actor)
+11613 1933 Oscar (Best Picture)::Oscar (Best Supporting Actor)
+11613 1935 Oscar (Best Cinematography)::Oscar (Best Picture)::Oscar (Best Supporting Actor)
 11613 1936 Oscar (Best Picture)
-11613 1937 Oscar (Best Actor) Oscar (Best Picture) Oscar (Best Supporting Actor)
+11613 1937 Oscar (Best Actor)::Oscar (Best Picture)::Oscar (Best Supporting Actor)
 11613 1938 Oscar (Best Picture)
 11613 1939 Oscar (Best Picture)
-11613 1940 Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Supporting Actress)
+11613 1940 Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Supporting Actress)
 11613 1941 Oscar (Best Picture)
 11613 1942 Oscar (Best Picture)
-11613 1944 Oscar (Best Directing) Oscar (Best Picture)
+11613 1944 Oscar (Best Directing)::Oscar (Best Picture)
 11613 1945 Oscar (Best Picture)
 11613 1946 Oscar (Best Picture)
 11613 1947 Oscar (Best Picture)
@@ -218,17 +218,17 @@
 11613 1950 Oscar (Best Picture)
 11613 1951 Oscar (Best Picture)
 11613 1952 Oscar (Best Picture)
-11613 1953 Oscar (Best Actor) Oscar (Best Directing) Oscar (Best Picture)
+11613 1953 Oscar (Best Actor)::Oscar (Best Directing)::Oscar (Best Picture)
 11613 1954 Oscar (Best Picture)
 11613 1955 Oscar (Best Picture)
 11613 1956 Oscar (Best Picture)
 11613 1957 Oscar (Best Picture)
-11613 1958 Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Supporting Actor)
+11613 1958 Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Supporting Actor)
 11613 1959 Oscar (Best Picture)
 11613 1960 Oscar (Best Picture)
-11613 1961 Oscar (Best Actor) Oscar (Best Directing) Oscar (Best Picture)
+11613 1961 Oscar (Best Actor)::Oscar (Best Directing)::Oscar (Best Picture)
 11613 1962 Oscar (Best Picture)
-11613 2028 Oscar (Best Cinematography) Oscar (Best Directing)
+11613 2028 Oscar (Best Cinematography)::Oscar (Best Directing)
 11613 223 generation X
 11613 2302 Oscar (Best Supporting Actress)
 11613 235 Oscar (Best Supporting Actor)
@@ -244,8 +244,8 @@
 11613 293 hit men
 11613 2966 road trip
 11613 3033 spoof
-11613 30707 Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Supporting Actor)
-11613 3095 Oscar (Best Directing) Oscar (Best Supporting Actress)
+11613 30707 Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Supporting Actor)
+11613 3095 Oscar (Best Directing)::Oscar (Best Supporting Actress)
 11613 3099 Oscar (Best Supporting Actress)
 11613 31221 comic book
 11613 3252 Oscar (Best Actor)
@@ -256,10 +256,10 @@
 11613 3396 road trip
 11613 3468 pool
 11613 3471 Oscar (Best Cinematography)
-11613 3475 Oscar (Best Cinematography) Oscar (Best Directing)
+11613 3475 Oscar (Best Cinematography)::Oscar (Best Directing)
 11613 3552 golf
-11613 356 Oscar (Best Actor) Oscar (Best Directing) Oscar (Best Picture)
-11613 3578 Oscar (Best Actor) Oscar (Best Picture)
+11613 356 Oscar (Best Actor)::Oscar (Best Directing)::Oscar (Best Picture)
+11613 3578 Oscar (Best Actor)::Oscar (Best Picture)
 11613 3712 television
 11613 37733 comic book
 11613 38038 Oscar (Best Animated Feature)
@@ -290,12 +290,12 @@
 11613 508 Oscar (Best Actor)
 11613 509 Oscar (Best Actress)
 11613 5171 remake
-11613 527 Oscar (Best Cinematography) Oscar (Best Directing) Oscar (Best Picture)
+11613 527 Oscar (Best Cinematography)::Oscar (Best Directing)::Oscar (Best Picture)
 11613 53125 pirates
 11613 5464 Oscar (Best Cinematography)
-11613 590 Oscar (Best Cinematography) Oscar (Best Directing) Oscar (Best Picture)
+11613 590 Oscar (Best Cinematography)::Oscar (Best Directing)::Oscar (Best Picture)
 11613 5902 Oscar (Best Supporting Actor)
-11613 593 Oscar (Best Actor) Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture)
+11613 593 Oscar (Best Actor)::Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)
 11613 5991 Oscar (Best Picture)
 11613 6157 comic book
 11613 6254 Oscar (Best Directing)
@@ -306,22 +306,22 @@
 11613 6863 rock and roll
 11613 6870 Oscar (Best Actor)
 11613 6947 Oscar (Best Cinematography)
-11613 6993 Oscar (Best Supporting Actor) Oscar (Best Supporting Actress)
+11613 6993 Oscar (Best Supporting Actor)::Oscar (Best Supporting Actress)
 11613 7072 Oscar (Best Supporting Actor)
 11613 7153 Oscar (Best Picture)
 11613 7263 hockey Olympics
 11613 7317 road trip
 11613 7619 Oscar (Best Actress)
 11613 8482 Oscar (Best Cinematography)
-11613 858 Mafia organized crime Oscar (Best Actor) Oscar (Best Picture)
+11613 858 Mafia organized crime Oscar (Best Actor)::Oscar (Best Picture)
 11613 8958 Oscar (Best Actor)
 11613 8984 heist
 11613 900 Oscar (Best Picture)
-11613 905 Oscar (Best Actress) Oscar (Best Picture)
+11613 905 Oscar (Best Actress)::Oscar (Best Picture)
 11613 909 Oscar (Best Picture)
 11613 912 Oscar (Best Picture)
-11613 914 Oscar (Best Actor) Oscar (Best Cinematography) Oscar (Best Picture)
-11613 920 Oscar (Best Actress) Oscar (Best Picture)
+11613 914 Oscar (Best Actor)::Oscar (Best Cinematography)::Oscar (Best Picture)
+11613 920 Oscar (Best Actress)::Oscar (Best Picture)
 11613 921 television
 11613 926 Oscar (Best Picture)
 11613 928 Oscar (Best Picture)
@@ -1932,15 +1932,15 @@
 20729 1250 Oscar (Best Cinematography)
 20729 1260 Fritz Lang
 20729 1266 Clint Eastwood
-20729 1293 Oscar (Best Cinematography) Oscar (Best Picture)
+20729 1293 Oscar (Best Cinematography)::Oscar (Best Picture)
 20729 1333 Alfred Hitchcock
 20729 1394 coen bros
 20729 1562 Uma Thurman
 20729 1805 Nudity (Topless - Notable)
-20729 1927 Oscar (Best Directing) Oscar (Best Picture)
+20729 1927 Oscar (Best Directing)::Oscar (Best Picture)
 20729 1931 AFI 100
 20729 1939 AFI 100
-20729 1940 Oscar (Best Directing) Oscar (Best Picture)
+20729 1940 Oscar (Best Directing)::Oscar (Best Picture)
 20729 1944 Oscar (Best Directing)
 20729 198 Nudity (Topless)
 20729 2231 Edward Norton
@@ -1950,9 +1950,9 @@
 20729 26704 Sean Penn
 20729 2949 james bond
 20729 3091 Akira Kurosawa
-20729 3095 Oscar (Best Directing) Oscar (Best Supporting Actress)
+20729 3095 Oscar (Best Directing)::Oscar (Best Supporting Actress)
 20729 31270 Nudity (Topless)
-20729 3475 Oscar (Best Cinematography) Oscar (Best Directing)
+20729 3475 Oscar (Best Cinematography)::Oscar (Best Directing)
 20729 3510 time travel
 20729 3735 AFI 100 (Cheers)
 20729 38304 Catchy Score
@@ -2319,7 +2319,7 @@
 23110 1088 dance Patrick Swayze romance
 23110 1097 family
 23110 1101 Tom Cruise
-23110 1183 Oscar (Best Picture) Oscar (Best Supporting Actress)
+23110 1183 Oscar (Best Picture)::Oscar (Best Supporting Actress)
 23110 1240 Arnold Schwarzenegger James Cameron sci-fi
 23110 1246 High School Robin Williams
 23110 1270 Michael J. Fox
@@ -2340,12 +2340,12 @@
 23110 1676 future
 23110 1682 Jim Carrey
 23110 1704 Ben Affleck Matt Damon Robin Williams
-23110 1721 James Cameron Leonardo DiCaprio Oscar (Best Picture) romance
+23110 1721 James Cameron Leonardo DiCaprio Oscar (Best Picture)::romance
 23110 185 Sandra Bullock
 23110 19 Jim Carrey
 23110 1917 Bruce Willis space
 23110 1923 boring
-23110 1961 Oscar (Best Actor) Oscar (Best Picture) Tom Cruise
+23110 1961 Oscar (Best Actor)::Oscar (Best Picture)::Tom Cruise
 23110 1968 80s
 23110 2080 Disney
 23110 2081 Disney
@@ -2377,7 +2377,7 @@
 23110 337 Johnny Depp Leonardo DiCaprio
 23110 34150 superhero
 23110 344 Jim Carrey
-23110 356 Oscar (Best Picture) Tom Hanks
+23110 356 Oscar (Best Picture)::Tom Hanks
 23110 3623 Tom Cruise
 23110 364 Disney
 23110 367 Jim Carrey
@@ -2440,7 +2440,7 @@
 23172 1035 classic
 23172 1080 religion
 23172 1089 violence
-23172 1090 Oscar (Best Picture) Vietnam
+23172 1090 Oscar (Best Picture)::Vietnam
 23172 1092 suspense
 23172 111 assassination Classic cult film
 23172 1111 animals
@@ -2452,21 +2452,21 @@
 23172 1188 Dance
 23172 1193 based on a book mental illness Oscar (Best Picture)
 23172 1196 classic franchise space space opera
-23172 1198 archaeology indiana jones Nazis Saturn Award (Best Actor) Saturn Award (Best Fantasy Film)
+23172 1198 archaeology indiana jones Nazis Saturn Award (Best Actor)::Saturn Award (Best Fantasy Film)
 23172 1203 classic courtroom
 23172 1204 Oscar (Best Picture)
 23172 1210 darth vader sequel space space opera
 23172 1212 atmospheric
-23172 1213 AFI 100 mafia narrated organized crime Oscar (Best Supporting Actor) violence
+23172 1213 AFI 100 mafia narrated organized crime Oscar (Best Supporting Actor)::violence
 23172 1219 serial killer
-23172 1221 classic mafia organized crime Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Supporting Actor) sequel
+23172 1221 classic mafia organized crime Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Supporting Actor)::sequel
 23172 1223 Aardman claymation
 23172 1228 AFI 100 boxing Oscar (Best Actor)
 23172 1230 new york city Oscar (Best Picture)
 23172 1232 imdb top 250
 23172 1235 May-December romance
 23172 1241 cult film zombies
-23172 1242 based on book Oscar (Best Cinematography) Oscar (Best Supporting Actor) true story
+23172 1242 based on book Oscar (Best Cinematography)::Oscar (Best Supporting Actor)::true story
 23172 1244 black and white
 23172 1245 Mafia
 23172 1265 time travel
@@ -2475,7 +2475,7 @@
 23172 1274 Japan
 23172 1278 farce gothic spoof
 23172 1282 Disney
-23172 1283 Oscar (Best Actor) USA film registry
+23172 1283 Oscar (Best Actor)::USA film registry
 23172 1289 no dialogue
 23172 1291 archaeology Nazis
 23172 1302 baseball sports
@@ -2502,7 +2502,7 @@
 23172 1917 end of the world space
 23172 1945 Oscar (Best Picture)
 23172 1952 Oscar (Best Picture)
-23172 1958 Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Supporting Actor)
+23172 1958 Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Supporting Actor)
 23172 1960 Oscar (Best Picture)
 23172 1961 Oscar (Best Picture)
 23172 1965 aliens
@@ -2558,7 +2558,7 @@
 23172 3008 Canada multiple storylines
 23172 3030 atmospheric
 23172 3052 controversial jay and silent bob religion satire view askew
-23172 30707 boxing Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Supporting Actor)
+23172 30707 boxing Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Supporting Actor)
 23172 30749 Africa ethnic conflict history journalism true story
 23172 3079 Jane Austen
 23172 3082 007
@@ -2604,7 +2604,7 @@
 23172 38798 chick flick
 23172 38886 divorce family
 23172 39 Jane Austen teen
-23172 39183 Oscar (Best Directing) sexuality Tragedy
+23172 39183 Oscar (Best Directing)::sexuality Tragedy
 23172 3972 kung fu martial arts
 23172 3989 true story
 23172 4005 007 James Bond
@@ -2641,7 +2641,7 @@
 23172 4734 jay and silent bob marijuana view askew
 23172 47629 based on a true story
 23172 48385 bears Los Angeles mockumentary R satire
-23172 48394 fascism imdb top 250 Oscar (Best Art Direction) Spain Spanish Civil War violence
+23172 48394 fascism imdb top 250 Oscar (Best Art Direction)::Spain Spanish Civil War violence
 23172 4848 surreal
 23172 48516 Boston gangsters murder R remake undercover cop violence
 23172 48780 imdb top 250
@@ -2658,7 +2658,7 @@
 23172 50685 food PG-13
 23172 509 intense Oscar (Best Actress)
 23172 51884 seen at the cinema
-23172 527 based on book disturbing history Holocaust Nazis Oscar (Best Cinematography) Oscar (Best Picture) true story World War II
+23172 527 based on book disturbing history Holocaust Nazis Oscar (Best Cinematography)::Oscar (Best Picture)::true story World War II
 23172 52722 alter ego comic book infidelity Marvel murder superhero
 23172 5294 religion
 23172 52973 Las Vegas Nudity (Topless - Brief)
@@ -2673,10 +2673,10 @@
 23172 5617 sexuality
 23172 5618 anime Japan Miyazaki Studio Ghibli
 23172 5669 guns
-23172 56788 Nudity (Topless) politics R
+23172 56788 Nudity (Topless)::politics R
 23172 5747 Australian World War I
 23172 58998 Nudity (Topless - Brief)
-23172 5902 Charlie Kaufman Oscar (Best Supporting Actor) surreal
+23172 5902 Charlie Kaufman Oscar (Best Supporting Actor)::surreal
 23172 593 serial killer
 23172 59315 Marvel superhero
 23172 594 Disney fairy tale USA film registry
@@ -2703,16 +2703,16 @@
 23172 665 World War II
 23172 6669 Japan terminal illness
 23172 6773 kidnapping no dialogue quirky
-23172 6787 History journalism Oscar (Best Supporting Actor) PG politics true story
+23172 6787 History journalism Oscar (Best Supporting Actor)::PG politics true story
 23172 685 homosexuality
 23172 6874 martial arts revenge
 23172 6932 journalism
 23172 6944 remake wedding
-23172 6993 family Oscar (Best Supporting Actor) Oscar (Best Supporting Actress)
+23172 6993 family Oscar (Best Supporting Actor)::Oscar (Best Supporting Actress)
 23172 7023 gay
 23172 7121 Hepburn and Tracy
-23172 7147 Nudity (Rear) surrealism
-23172 7153 Oscar (Best Picture) Tolkien
+23172 7147 Nudity (Rear)::surrealism
+23172 7153 Oscar (Best Picture)::Tolkien
 23172 7156 History Vietnam
 23172 7263 Olympics
 23172 7317 road trip
@@ -2730,7 +2730,7 @@
 23172 8368 magic
 23172 8477 narrated
 23172 8528 obscure sports
-23172 858 mafia mob organized crime Oscar (Best Actor) Oscar (Best Picture)
+23172 858 mafia mob organized crime Oscar (Best Actor)::Oscar (Best Picture)
 23172 8622 liberal terrorism
 23172 8636 comic book super-hero superhero
 23172 8638 Paris
@@ -2741,11 +2741,11 @@
 23172 8984 heist
 23172 9018 journalism
 23172 904 AFI 100 voyeurism
-23172 905 Oscar (Best Actress) Oscar (Best Picture)
+23172 905 Oscar (Best Actress)::Oscar (Best Picture)
 23172 907 divorce
 23172 908 classic
-23172 912 classic Oscar (Best Picture) USA film registry World War II
-23172 914 family Oscar (Best Actor) Oscar (Best Cinematography) Oscar (Best Picture)
+23172 912 classic Oscar (Best Picture)::USA film registry World War II
+23172 914 family Oscar (Best Actor)::Oscar (Best Cinematography)::Oscar (Best Picture)
 23172 919 AFI 100 witch
 23172 921 television
 23172 922 AFI 100 classic Hollywood Los Angeles USA film registry
@@ -3122,7 +3122,7 @@
 2643 3160 Tom Cruise
 2643 32 Brad Pitt Bruce Willis
 2643 32587 Bruce Willis
-2643 33166 Oscar (Best Picture) racism
+2643 33166 Oscar (Best Picture)::racism
 2643 3671 Mel Brooks
 2643 3949 drugs
 2643 4011 Brad Pitt
@@ -3134,7 +3134,7 @@
 2643 48774 Clive Owen
 2643 49278 Denzel Washington
 2643 493 Samuel L. Jackson
-2643 51091 Nudity (Topless) Samuel L. Jackson
+2643 51091 Nudity (Topless)::Samuel L. Jackson
 2643 51255 Simon Pegg
 2643 51662 Nudity (Topless)
 2643 52245 Will Ferrell
@@ -3287,7 +3287,7 @@
 29538 4993 Peter Jackson
 29538 50 Kevin Spacey
 29538 508 Tom Hanks
-29538 5464 Jude Law Oscar (Best Cinematography) Tom Hanks
+29538 5464 Jude Law Oscar (Best Cinematography)::Tom Hanks
 29538 5669 Michael Moore
 29538 5952 Peter Jackson
 29538 6711 Bill Murray Sofia Coppola
@@ -3372,7 +3372,7 @@
 30167 44694 Nudity (Topless - Brief)
 30167 44788 Nudity (Full Frontal)
 30167 44929 Nudity (Topless)
-30167 46723 Nudity (Full Frontal) overrated
+30167 46723 Nudity (Full Frontal)::overrated
 30167 48696 Nudity (Topless - Brief)
 30167 4975 Nudity (Topless)
 30167 51091 Nudity (Topless)
@@ -3971,21 +3971,21 @@
 34744 47 David Fincher
 34744 51540 David Fincher
 34745 1022 fairy tale
-34745 1035 Oscar (Best Directing) Oscar (Best Picture) World War II
-34745 1090 Oscar (Best Directing) Oscar (Best Picture)
+34745 1035 Oscar (Best Directing)::Oscar (Best Picture)::World War II
+34745 1090 Oscar (Best Directing)::Oscar (Best Picture)
 34745 1101 aviation Oscar (Best Music - Original Song)
 34745 1136 medieval
 34745 1148 claymation penguin
-34745 1193 Oscar (Best Actor) Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture)
+34745 1193 Oscar (Best Actor)::Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)
 34745 1196 space opera
 34745 1197 fairy tale
-34745 1198 Saturn Award (Best Actor) Saturn Award (Best Fantasy Film)
+34745 1198 Saturn Award (Best Actor)::Saturn Award (Best Fantasy Film)
 34745 1203 racism
 34745 1210 space opera
 34745 1214 space travel
 34745 1222 anti-war military
 34745 1223 claymation
-34745 1225 classical music Oscar (Best Actor) Oscar (Best Directing) Oscar (Best Picture)
+34745 1225 classical music Oscar (Best Actor)::Oscar (Best Directing)::Oscar (Best Picture)
 34745 1240 time travel
 34745 1258 Saturn Award (Best Supporting Actor)
 34745 1270 time travel
@@ -3996,19 +3996,19 @@
 34745 1391 alien invasion
 34745 150 space program
 34745 1610 cold war
-34745 1961 Oscar (Best Actor) Oscar (Best Directing) Oscar (Best Picture)
+34745 1961 Oscar (Best Actor)::Oscar (Best Directing)::Oscar (Best Picture)
 34745 2 board game
 34745 2011 time travel
 34745 2012 time travel
-34745 2028 Oscar (Best Cinematography) Oscar (Best Directing) World War II
+34745 2028 Oscar (Best Cinematography)::Oscar (Best Directing)::World War II
 34745 2311 space travel
-34745 2571 Oscar (Best Effects - Visual Effects) virtual reality
+34745 2571 Oscar (Best Effects - Visual Effects)::virtual reality
 34745 26662 anime magic
 34745 2700 satire
 34745 2788 sketch comedy
 34745 2791 aviation
 34745 29 dystopia steampunk surreal
-34745 296 nonlinear Oscar (Best Writing - Screenplay Written Directly for the Screen) violence
+34745 296 nonlinear Oscar (Best Writing - Screenplay Written Directly for the Screen)::violence
 34745 2968 time travel
 34745 3000 anime environmental
 34745 3033 spoof
@@ -4022,8 +4022,8 @@
 34745 3252 Oscar (Best Actor)
 34745 3317 coming of age
 34745 3471 Oscar (Best Cinematography)
-34745 356 Oscar (Best Actor) Oscar (Best Directing) Oscar (Best Picture)
-34745 3578 Oscar (Best Actor) Oscar (Best Picture)
+34745 356 Oscar (Best Actor)::Oscar (Best Directing)::Oscar (Best Picture)
+34745 3578 Oscar (Best Actor)::Oscar (Best Picture)
 34745 35836 sex
 34745 3698 Saturn Award (Best Supporting Actor)
 34745 3751 claymation
@@ -4042,13 +4042,13 @@
 34745 4873 philosophy
 34745 4896 magic
 34745 4993 based on book Oscar (Best Cinematography)
-34745 527 based on book Oscar (Best Art Direction - Set Decoration) Oscar (Best Cinematography) Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Writing - Screenplay Based on Material from Another Medium) World War II
+34745 527 based on book Oscar (Best Art Direction - Set Decoration)::Oscar (Best Cinematography)::Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Writing - Screenplay Based on Material from Another Medium)::World War II
 34745 53123 Oscar (Best Music - Original Song)
 34745 5464 Oscar (Best Cinematography)
 34745 5618 anime
 34745 589 time travel
-34745 590 Oscar (Best Cinematography) Oscar (Best Directing) Oscar (Best Picture)
-34745 593 Oscar (Best Actor) Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture) Saturn Award (Best Actor) Saturn Award (Best Makeup) Saturn Award (Best Writing)
+34745 590 Oscar (Best Cinematography)::Oscar (Best Directing)::Oscar (Best Picture)
+34745 593 Oscar (Best Actor)::Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)::Saturn Award (Best Actor)::Saturn Award (Best Makeup)::Saturn Award (Best Writing)
 34745 594 fairy tale
 34745 595 fairy tale
 34745 5971 anime
@@ -4259,7 +4259,7 @@
 37216 356 Oscar (Best Picture)
 37216 3578 Oscar (Best Picture)
 37216 4720 ghosts
-37216 4995 Oscar (Best Picture) psychology
+37216 4995 Oscar (Best Picture)::psychology
 37216 527 Oscar (Best Picture)
 37216 590 Oscar (Best Picture)
 37216 593 crime Oscar (Best Picture)
@@ -4361,7 +4361,7 @@
 37698 1748 fantasy sci-fi
 37698 1909 aliens scifi
 37698 1953 Oscar (Best Picture)
-37698 1954 boxing Oscar (Best Picture) sports
+37698 1954 boxing Oscar (Best Picture)::sports
 37698 1968 80s teen
 37698 2019 samurai
 37698 2078 classic Disney
@@ -4446,7 +4446,7 @@
 37698 4963 crime
 37698 4973 romance
 37698 4993 fantasy
-37698 4995 Oscar (Best Picture) psychology
+37698 4995 Oscar (Best Picture)::psychology
 37698 527 holocaust
 37698 5291 samurai
 37698 541 sci-fi
@@ -4918,7 +4918,7 @@
 43603 4873 drugs
 43603 49272 007
 43603 7123 drugs
-43699 1035 Oscar (Best Picture) World War II
+43699 1035 Oscar (Best Picture)::World War II
 43699 1080 Monty Python
 43699 1090 Oscar (Best Picture)
 43699 1097 Steven Spielberg
@@ -4932,9 +4932,9 @@
 43699 1230 Oscar (Best Picture)
 43699 1234 Oscar (Best Picture)
 43699 1245 Coen Brothers
-43699 1250 Oscar (Best Picture) World War II
+43699 1250 Oscar (Best Picture)::World War II
 43699 1262 World War II
-43699 1263 Oscar (Best Picture) Vietnam
+43699 1263 Oscar (Best Picture)::Vietnam
 43699 1266 Oscar (Best Picture)
 43699 1272 Oscar (Best Picture)
 43699 1287 Oscar (Best Picture)
@@ -4948,12 +4948,12 @@
 43699 1929 Oscar (Best Picture)
 43699 1931 Oscar (Best Picture)
 43699 1932 Oscar (Best Picture)
-43699 1933 Oscar (Best Picture) Oscar (Best Supporting Actor)
-43699 1935 Oscar (Best Picture) Oscar (Best Supporting Actor)
+43699 1933 Oscar (Best Picture)::Oscar (Best Supporting Actor)
+43699 1935 Oscar (Best Picture)::Oscar (Best Supporting Actor)
 43699 1937 Oscar (Best Actor)
 43699 1938 Oscar (Best Picture)
 43699 1939 Oscar (Best Picture)
-43699 1940 Oscar (Best Picture) Oscar (Best Supporting Actress)
+43699 1940 Oscar (Best Picture)::Oscar (Best Supporting Actress)
 43699 1942 Oscar (Best Picture)
 43699 1944 Oscar (Best Picture)
 43699 1945 Oscar (Best Picture)
@@ -5004,7 +5004,7 @@
 43699 4973 Paris
 43699 50 Kevin Spacey
 43699 5046 Philip K. Dick
-43699 508 Oscar (Best Actor) Tom Hanks
+43699 508 Oscar (Best Actor)::Tom Hanks
 43699 527 Holocaust Steven Spielberg World War II
 43699 539 Tom Hanks
 43699 541 Philip K. Dick
@@ -5027,8 +5027,8 @@
 43699 900 Oscar (Best Picture)
 43699 905 Oscar (Best Picture)
 43699 909 Oscar (Best Picture)
-43699 912 Oscar (Best Picture) World War II
-43699 920 Oscar (Best Actress) Oscar (Best Picture)
+43699 912 Oscar (Best Picture)::World War II
+43699 920 Oscar (Best Actress)::Oscar (Best Picture)
 43699 926 Oscar (Best Picture)
 43699 938 Oscar (Best Picture)
 43699 952 Oscar (Best Picture)
@@ -5117,11 +5117,11 @@
 45190 1193 Oscar (Best Picture)
 45190 1204 Oscar (Best Picture)
 45190 1221 Classic Oscar (Best Picture)
-45190 1225 drama Oscar (Best Actor) Oscar (Best Picture)
+45190 1225 drama Oscar (Best Actor)::Oscar (Best Picture)
 45190 1270 adventure sci-fi time travel
 45190 1287 Oscar (Best Picture)
 45190 1653 sci-fi
-45190 1937 Oscar (Best Actor) Oscar (Best Picture)
+45190 1937 Oscar (Best Actor)::Oscar (Best Picture)
 45190 1945 Oscar (Best Picture)
 45190 1949 Oscar (Best Picture)
 45190 2194 Sean Connery
@@ -5140,7 +5140,7 @@
 45190 33794 comic book super-hero
 45190 34319 action cloning
 45190 3510 time travel
-45190 356 Oscar (Best Picture) romance Tom Hanks
+45190 356 Oscar (Best Picture)::romance Tom Hanks
 45190 364 animation
 45190 37386 cloning
 45190 37830 cgi
@@ -5152,7 +5152,7 @@
 45190 5349 super-hero
 45190 5502 Mel Gibson
 45190 590 Oscar (Best Picture)
-45190 593 crime Oscar (Best Actor) Oscar (Best Actress) Oscar (Best Picture)
+45190 593 crime Oscar (Best Actor)::Oscar (Best Actress)::Oscar (Best Picture)
 45190 6377 animation Pixar
 45190 6537 time travel
 45190 6541 Sean Connery
@@ -5162,7 +5162,7 @@
 45190 8360 animation
 45190 8636 comic book super-hero
 45190 8961 Pixar super-hero
-45190 905 Oscar (Best Actress) Oscar (Best Picture)
+45190 905 Oscar (Best Actress)::Oscar (Best Picture)
 45190 912 Classic Oscar (Best Picture)
 45190 926 Oscar (Best Picture)
 45290 1265 time travel
@@ -5909,7 +5909,7 @@
 49882 5069 anime
 49882 50872 animation pixar
 49882 5107 Bruce Willis
-49882 51091 Nudity (Topless) Samuel L. Jackson
+49882 51091 Nudity (Topless)::Samuel L. Jackson
 49882 5110 Nudity (Topless)
 49882 5146 anime
 49882 5218 animation cartoon
@@ -5980,7 +5980,7 @@
 49882 8622 terrorism
 49882 8644 action future
 49882 8665 Matt Damon
-49882 8861 Nudity (Topless) zombies
+49882 8861 Nudity (Topless)::zombies
 49882 8870 Julianne Moore
 49882 8984 George Clooney heist Matt Damon
 49882 8985 vampire vampires
@@ -6740,9 +6740,9 @@
 52806 1204 Oscar (Best Picture)
 52806 1208 Vietnam war
 52806 1214 aliens space
-52806 1250 Oscar (Best Picture) World War II
-52806 1263 Oscar (Best Picture) Vietnam
-52806 1272 Oscar (Best Picture) World War II
+52806 1250 Oscar (Best Picture)::World War II
+52806 1263 Oscar (Best Picture)::Vietnam
+52806 1272 Oscar (Best Picture)::World War II
 52806 1293 Oscar (Best Picture)
 52806 1302 baseball fantasy
 52806 1320 aliens
@@ -6755,7 +6755,7 @@
 52806 1748 aliens dystopia surreal
 52806 1921 maths
 52806 1952 Oscar (Best Picture)
-52806 1953 Oscar (Best Actor) Oscar (Best Picture)
+52806 1953 Oscar (Best Actor)::Oscar (Best Picture)
 52806 1955 Oscar (Best Picture)
 52806 1960 Oscar (Best Picture)
 52806 2 fantasy
@@ -6889,7 +6889,7 @@
 55699 1213 Martin Scorsese
 55699 1228 Martin Scorsese Oscar (Best Actor)
 55699 1242 Oscar (Best Supporting Actor)
-55699 1293 Oscar (Best Actor) Oscar (Best Cinematography)
+55699 1293 Oscar (Best Actor)::Oscar (Best Cinematography)
 55699 1343 Martin Scorsese
 55699 1393 Oscar (Best Supporting Actor)
 55699 1954 Oscar (Best Picture)
@@ -8879,19 +8879,19 @@
 7088 2948 007
 7088 2949 007
 7088 2997 surreal
-70974 1035 classic Oscar (Best Directing) Oscar (Best Picture)
+70974 1035 classic Oscar (Best Directing)::Oscar (Best Picture)
 70974 1079 Oscar (Best Supporting Actor)
 70974 1084 classic
 70974 1086 Alfred Hitchcock
-70974 1090 Oscar (Best Directing) Oscar (Best Picture) Vietnam War
+70974 1090 Oscar (Best Directing)::Oscar (Best Picture)::Vietnam War
 70974 1097 aliens sci-fi
 70974 110 Oscar (Best Picture)
 70974 1101 Oscar (Best Music - Original Song)
 70974 1103 AFI 100
-70974 1183 Oscar (Best Cinematography) Oscar (Best Picture) Oscar (Best Supporting Actress)
-70974 1193 Jack Nicholson Oscar (Best Actor) Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture)
+70974 1183 Oscar (Best Cinematography)::Oscar (Best Picture)::Oscar (Best Supporting Actress)
+70974 1193 Jack Nicholson Oscar (Best Actor)::Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)
 70974 1196 franchise space
-70974 1198 archaeology Harrison Ford Saturn Award (Best Actor) Saturn Award (Best Fantasy Film)
+70974 1198 archaeology Harrison Ford Saturn Award (Best Actor)::Saturn Award (Best Fantasy Film)
 70974 1200 space
 70974 1204 Oscar (Best Picture)
 70974 1206 brainwashing Stanley Kubrick
@@ -8903,30 +8903,30 @@
 70974 1214 aliens sci-fi space
 70974 1217 Kurosawa samurai
 70974 1219 Alfred Hitchcock classic
-70974 1221 Al Pacino Classic Francis Ford Copolla mafia Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Supporting Actor)
+70974 1221 Al Pacino Classic Francis Ford Copolla mafia Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Supporting Actor)
 70974 1222 Vietnam Vietnam War
-70974 1225 Oscar (Best Actor) Oscar (Best Directing) Oscar (Best Picture)
+70974 1225 Oscar (Best Actor)::Oscar (Best Directing)::Oscar (Best Picture)
 70974 1228 AFI 100 boxing Oscar (Best Actor)
 70974 1230 Oscar (Best Picture)
 70974 1231 NASA
 70974 1240 Arnold Schwarzenegger sci-fi
-70974 1242 Civil War Oscar (Best Cinematography) Oscar (Best Supporting Actor)
+70974 1242 Civil War Oscar (Best Cinematography)::Oscar (Best Supporting Actor)
 70974 1246 Robin Williams
 70974 1247 classic
-70974 1250 Oscar (Best Cinematography) Oscar (Best Picture) World War II
+70974 1250 Oscar (Best Cinematography)::Oscar (Best Picture)::World War II
 70974 1252 Film Noir Los Angeles
-70974 1258 Jack Nicholson Saturn Award (Best Supporting Actor) Stanley Kubrick
+70974 1258 Jack Nicholson Saturn Award (Best Supporting Actor)::Stanley Kubrick
 70974 1262 World War II
-70974 1263 Oscar (Best Picture) Vietnam
+70974 1263 Oscar (Best Picture)::Vietnam
 70974 1265 Bill Murray
 70974 1266 Oscar (Best Picture)
 70974 1267 AFI 100 brainwashing
-70974 1272 Oscar (Best Picture) World War II
+70974 1272 Oscar (Best Picture)::World War II
 70974 1282 Disney
-70974 1283 Oscar (Best Actor) USA film registry
+70974 1283 Oscar (Best Actor)::USA film registry
 70974 1287 Oscar (Best Picture)
 70974 1291 archaeology
-70974 1293 Oscar (Best Actor) Oscar (Best Cinematography) Oscar (Best Picture)
+70974 1293 Oscar (Best Actor)::Oscar (Best Cinematography)::Oscar (Best Picture)
 70974 1302 sports
 70974 1333 Alfred Hitchcock
 70974 1374 franchise
@@ -8935,38 +8935,38 @@
 70974 150 NASA Tom Hanks
 70974 1527 aliens
 70974 1645 Al Pacino
-70974 1721 Oscar (Best Cinematography) Oscar (Best Picture)
-70974 1927 Oscar (Best Directing) Oscar (Best Picture)
+70974 1721 Oscar (Best Cinematography)::Oscar (Best Picture)
+70974 1927 Oscar (Best Directing)::Oscar (Best Picture)
 70974 1929 Oscar (Best Picture)
 70974 1931 AFI 100 Oscar (Best Picture)
-70974 1933 Oscar (Best Picture) Oscar (Best Supporting Actor)
-70974 1935 Oscar (Best Cinematography) Oscar (Best Picture) Oscar (Best Supporting Actor)
+70974 1933 Oscar (Best Picture)::Oscar (Best Supporting Actor)
+70974 1935 Oscar (Best Cinematography)::Oscar (Best Picture)::Oscar (Best Supporting Actor)
 70974 1936 Oscar (Best Picture)
-70974 1937 Oscar (Best Actor) Oscar (Best Supporting Actor)
+70974 1937 Oscar (Best Actor)::Oscar (Best Supporting Actor)
 70974 1939 AFI 100 Oscar (Best Picture)
-70974 1940 Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Supporting Actress)
+70974 1940 Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Supporting Actress)
 70974 1941 Oscar (Best Picture)
 70974 1942 Oscar (Best Picture)
-70974 1944 Oscar (Best Directing) Oscar (Best Picture)
+70974 1944 Oscar (Best Directing)::Oscar (Best Picture)
 70974 1945 Oscar (Best Picture)
 70974 1946 Oscar (Best Picture)
 70974 1947 Oscar (Best Picture)
 70974 1950 Oscar (Best Picture)
 70974 1952 Oscar (Best Picture)
-70974 1953 Oscar (Best Actor) Oscar (Best Directing) Oscar (Best Picture)
+70974 1953 Oscar (Best Actor)::Oscar (Best Directing)::Oscar (Best Picture)
 70974 1954 boxing Oscar (Best Picture)
 70974 1957 Oscar (Best Picture)
-70974 1958 Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Supporting Actor)
-70974 1961 Oscar (Best Actor) Oscar (Best Directing) Oscar (Best Picture)
+70974 1958 Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Supporting Actor)
+70974 1961 Oscar (Best Actor)::Oscar (Best Directing)::Oscar (Best Picture)
 70974 1962 Oscar (Best Picture)
 70974 2023 Al Pacino
-70974 2028 Oscar (Best Cinematography) Oscar (Best Directing) Steven Spielberg Tom Hanks World War II
+70974 2028 Oscar (Best Cinematography)::Oscar (Best Directing)::Steven Spielberg Tom Hanks World War II
 70974 2115 archaeology Harrison Ford
 70974 2186 Alfred Hitchcock
 70974 2193 fantasy
 70974 2302 Oscar (Best Supporting Actress)
 70974 235 Oscar (Best Supporting Actor)
-70974 2571 Oscar (Best Effects - Visual Effects) sci-fi
+70974 2571 Oscar (Best Effects - Visual Effects)::sci-fi
 70974 25827 Oscar (Best Directing)
 70974 25856 Oscar (Best Cinematography)
 70974 260 franchise Harrison Ford Sci-Fi space USA film registry
@@ -8978,8 +8978,8 @@
 70974 2944 World War II
 70974 296 Oscar (Best Writing - Screenplay Written Directly for the Screen)
 70974 3033 space
-70974 30707 boxing Clint Eastwood Morgan Freeman Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Supporting Actor)
-70974 3095 Oscar (Best Directing) Oscar (Best Supporting Actress) USA film registry
+70974 30707 boxing Clint Eastwood Morgan Freeman Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Supporting Actor)
+70974 3095 Oscar (Best Directing)::Oscar (Best Supporting Actress)::USA film registry
 70974 3099 Oscar (Best Supporting Actress)
 70974 316 space
 70974 318 Morgan Freeman
@@ -8992,12 +8992,12 @@
 70974 3435 AFI 100 Los Angeles
 70974 3448 Robin Williams Vietnam War
 70974 3471 aliens Oscar (Best Cinematography)
-70974 3475 Oscar (Best Cinematography) Oscar (Best Directing)
-70974 356 Oscar (Best Actor) Oscar (Best Directing) Oscar (Best Picture) Tom Hanks Vietnam
+70974 3475 Oscar (Best Cinematography)::Oscar (Best Directing)
+70974 356 Oscar (Best Actor)::Oscar (Best Directing)::Oscar (Best Picture)::Tom Hanks Vietnam
 70974 3654 World War II
 70974 3683 Coen Brothers
 70974 3698 Saturn Award (Best Supporting Actor)
-70974 3735 AFI 100 (Cheers) Al Pacino
+70974 3735 AFI 100 (Cheers)::Al Pacino
 70974 3873 Oscar (Best Actor)
 70974 38992 Al Pacino
 70974 39183 Oscar (Best Directing)
@@ -9008,7 +9008,7 @@
 70974 44195 politics satire
 70974 457 Harrison Ford
 70974 4776 Oscar (Best Actor)
-70974 480 Oscar (Best Effects - Visual Effects) Steven Spielberg
+70974 480 Oscar (Best Effects - Visual Effects)::Steven Spielberg
 70974 48385 satire
 70974 48394 Oscar (Best Art Direction)
 70974 48516 Martin Scorsese
@@ -9018,44 +9018,44 @@
 70974 4998 Oscar (Best Cinematography)
 70974 50 Oscar (Best Supporting Actor)
 70974 500 Robin Williams
-70974 508 Oscar (Best Actor) Tom Hanks
-70974 527 Oscar (Best Art Direction - Set Decoration) Oscar (Best Cinematography) Oscar (Best Directing) Oscar (Best Picture) Oscar (Best Writing - Screenplay Based on Material from Another Medium)
+70974 508 Oscar (Best Actor)::Tom Hanks
+70974 527 Oscar (Best Art Direction - Set Decoration)::Oscar (Best Cinematography)::Oscar (Best Directing)::Oscar (Best Picture)::Oscar (Best Writing - Screenplay Based on Material from Another Medium)
 70974 5291 samurai
 70974 5378 space
 70974 5388 Al Pacino Robin Williams
 70974 541 Harrison Ford sci-fi
 70974 589 Arnold Schwarzenegger
-70974 590 Oscar (Best Cinematography) Oscar (Best Directing) Oscar (Best Picture) war
+70974 590 Oscar (Best Cinematography)::Oscar (Best Directing)::Oscar (Best Picture)::war
 70974 5902 Oscar (Best Supporting Actor)
-70974 593 Oscar (Best Actor) Oscar (Best Actress) Oscar (Best Directing) Oscar (Best Picture) Saturn Award (Best Actor) Saturn Award (Best Makeup) Saturn Award (Best Writing)
+70974 593 Oscar (Best Actor)::Oscar (Best Actress)::Oscar (Best Directing)::Oscar (Best Picture)::Saturn Award (Best Actor)::Saturn Award (Best Makeup)::Saturn Award (Best Writing)
 70974 594 Disney USA film registry
 70974 5952 fantasy
 70974 596 Disney
 70974 608 Coen Brothers
 70974 6254 Oscar (Best Directing)
 70974 6441 World War II
-70974 6787 Oscar (Best Supporting Actor) politics
-70974 6993 Oscar (Best Supporting Actor) Oscar (Best Supporting Actress)
+70974 6787 Oscar (Best Supporting Actor)::politics
+70974 6993 Oscar (Best Supporting Actor)::Oscar (Best Supporting Actress)
 70974 7072 Oscar (Best Supporting Actor)
 70974 750 classic Stanley Kubrick
 70974 7619 Oscar (Best Actress)
 70974 7980 World War II
 70974 8482 Oscar (Best Cinematography)
-70974 858 mafia Oscar (Best Actor) Oscar (Best Picture)
+70974 858 mafia Oscar (Best Actor)::Oscar (Best Picture)
 70974 8958 Oscar (Best Actor)
 70974 8977 Al Pacino
 70974 900 Oscar (Best Picture)
 70974 903 70mm Alfred Hitchcock
 70974 904 AFI 100 Alfred Hitchcock classic
-70974 905 Oscar (Best Actress) Oscar (Best Picture)
+70974 905 Oscar (Best Actress)::Oscar (Best Picture)
 70974 908 Alfred Hitchcock
 70974 909 Billy Wilder Oscar (Best Picture)
 70974 910 classic
-70974 912 Classic Film Noir Oscar (Best Picture) USA film registry
+70974 912 Classic Film Noir Oscar (Best Picture)::USA film registry
 70974 913 AFI 100
-70974 914 classic Oscar (Best Actor) Oscar (Best Cinematography) Oscar (Best Picture)
+70974 914 classic Oscar (Best Actor)::Oscar (Best Cinematography)::Oscar (Best Picture)
 70974 919 AFI 100 classic
-70974 920 Civil War Oscar (Best Actress) Oscar (Best Picture)
+70974 920 Civil War Oscar (Best Actress)::Oscar (Best Picture)
 70974 922 AFI 100 Billy Wilder classic Hollywood Los Angeles USA film registry
 70974 923 classic
 70974 924 classic sci-fi space

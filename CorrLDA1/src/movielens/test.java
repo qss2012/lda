@@ -4,6 +4,9 @@
  */
 package movielens;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.Vector;
 
 /**
@@ -20,11 +23,12 @@ public class test {
 
     public static void main(String args[]) {
         int i;
-        double a;
+        
         for(i=0;i<50;i++){
             if(i%5==0)
                 System.out.println(i);
         }
+        
     }
 }
 
