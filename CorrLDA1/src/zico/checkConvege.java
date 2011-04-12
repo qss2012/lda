@@ -5,13 +5,13 @@
 package zico;
 
 import java.io.BufferedReader;
-import java.io.Console;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.StringTokenizer;
-import java.util.Vector;
+
 
 public class checkConvege {
 
@@ -21,7 +21,7 @@ public class checkConvege {
         showAllFiles(root);
     }
 
-    final static void showAllFiles(File dir) throws Exception {
+    static void showAllFiles(File dir) throws Exception {
         File[] fs = dir.listFiles();
         String filename = "";
         String type = "";
@@ -65,7 +65,6 @@ public class checkConvege {
                     }
                 }
             }
-
         }
     }
 }
