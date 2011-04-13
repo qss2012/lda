@@ -14,7 +14,7 @@ import java.io.OutputStreamWriter;
  */
 public class Estimate {
 
-    public void estimate(CorrLDA corrlda,int no) {
+    public void estimate(CorrLDA corrlda, int no) {
         Integer movieForU = 0;
         int topic = 0;
         int ec = 0;
@@ -44,12 +44,12 @@ public class Estimate {
                     }
                 }
             }
-            
+
             if (iter % 1 == 0) {
-                computeTheta(corrlda, iter+no);
-                computePhi(corrlda, iter+no);
-                computeDigamma(corrlda, iter+no);
-                saveModel(corrlda, iter+no);
+                computeTheta(corrlda, iter + no);
+                computePhi(corrlda, iter + no);
+                computeDigamma(corrlda, iter + no);
+                saveModel(corrlda, iter + no);
             }
             ec = ec + 1;
             long endTime = System.currentTimeMillis();
@@ -60,10 +60,10 @@ public class Estimate {
         }
         System.out.println("Gibbs sampling completed!\n");
         System.out.println("Saving the final model!\n");
-        computeTheta(corrlda, iter - 1+no);
-        computePhi(corrlda, iter - 1+no);
-        computeDigamma(corrlda, iter - 1+no);
-        saveModel(corrlda, iter-1+no);
+        computeTheta(corrlda, iter - 1 + no);
+        computePhi(corrlda, iter - 1 + no);
+        computeDigamma(corrlda, iter - 1 + no);
+        saveModel(corrlda, iter - 1 + no);
     }
 
     public void saveTheta(CorrLDA corrlda, int iter) {
@@ -80,18 +80,20 @@ public class Estimate {
         System.out.println("Saving theta...");
         try {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("3000/"+file), "UTF-8"));
-            writer.write(corrlda.userlen+" "+corrlda.K+"\r\n");
+                    new FileOutputStream("3000/" + file), "UTF-8"));
+            writer.write(corrlda.userlen + " " + corrlda.K + "\r\n");
+            writer.flush();
             for (int u = 0; u < corrlda.userlen; u++) {
                 for (int k = 0; k < corrlda.K; k++) {
                     String t = Double.toString(corrlda.theta[u][k]);
-                    writer.write(t + "\t");
+                    writer.write(t + " ");
                     writer.flush();
                 }
                 writer.write("\r\n");
                 writer.flush();
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -109,12 +111,13 @@ public class Estimate {
             }
             file = file + "_" + pendix;
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("3000/"+file), "UTF-8"));
-            writer.write(corrlda.movielen+" "+corrlda.K+"\r\n");
+                    new FileOutputStream("3000/" + file), "UTF-8"));
+            writer.write(corrlda.movielen + " " + corrlda.K + "\r\n");
+            writer.flush();
             for (int u = 0; u < corrlda.movielen; u++) {
                 for (int k = 0; k < corrlda.K; k++) {
                     String t = Double.toString(corrlda.fine[u][k]);
-                    writer.write(t + "\t");
+                    writer.write(t + " ");
                     writer.flush();
 
                 }
@@ -139,12 +142,12 @@ public class Estimate {
             file = file + "_" + pendix;
             System.out.println("Saving digamma...");
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("3000/"+file), "UTF-8"));
-            writer.write(corrlda.taglen+" "+corrlda.K+"\r\n");
+                    new FileOutputStream("3000/" + file), "UTF-8"));
+            writer.write(corrlda.taglen + " " + corrlda.K + "\r\n");
+            writer.flush();
             for (int u = 0; u < corrlda.taglen; u++) {
                 for (int k = 0; k < corrlda.K; k++) {
                     String t = Double.toString(corrlda.digamma[u][k]);
-
                     writer.write(t + " ");
                     writer.flush();
                 }
@@ -255,72 +258,99 @@ public class Estimate {
 
     public void saveModel(CorrLDA corrlda, int iter) {
         System.out.println("Saving model...");
-        String pendix="";
-       if (iter < 10) {
-                pendix = "000" + Integer.toString(iter);
-            } else if (iter < 100) {
-                pendix = "00" + Integer.toString(iter);
-            } else if (iter < 1000) {
-                pendix = "0" + Integer.toString(iter);
-            }
-        String file = "model.dat_" +pendix;
+        String pendix = "";
+        if (iter < 10) {
+            pendix = "000" + Integer.toString(iter);
+        } else if (iter < 100) {
+            pendix = "00" + Integer.toString(iter);
+        } else if (iter < 1000) {
+            pendix = "0" + Integer.toString(iter);
+        }
+        String file = "model.dat_" + pendix;
         try {
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("3000/"+file), "UTF-8"));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("3000/" + file), "UTF-8"));
             writer.write(corrlda.movielen + "::" + corrlda.userlen + "::" + corrlda.taglen + "\r\n");
+            writer.flush();
             writer.write("nz_u\r\n");
+            writer.flush();
             for (int i = 0; i < corrlda.userlen; i++) {
                 for (int j = 0; j < corrlda.K; j++) {
                     writer.write(corrlda.nz_u[i][j] + " ");
+                    writer.flush();
                 }
                 writer.write("\r\n");
+                writer.flush();
             }
             writer.write("nm_z\r\n");
+            writer.flush();
             for (int i = 0; i < corrlda.movielen; i++) {
                 for (int j = 0; j < corrlda.K; j++) {
                     writer.write(corrlda.nm_z[i][j] + " ");
+                    writer.flush();
                 }
                 writer.write("\r\n");
+                writer.flush();
             }
             writer.write("nt_z\r\n");
+            writer.flush();
             for (int i = 0; i < corrlda.taglen; i++) {
                 for (int j = 0; j < corrlda.K; j++) {
                     writer.write(corrlda.nt_z[i][j] + " ");
+                    writer.flush();
                 }
                 writer.write("\r\n");
+                writer.flush();
             }
             writer.write("nsumz_u\r\n");
+            writer.flush();
             for (int i = 0; i < corrlda.userlen; i++) {
                 writer.write(corrlda.nsumz_u[i] + " ");
+                writer.flush();
             }
             writer.write("\r\n");
+            writer.flush();
             writer.write("nsumm_z\r\n");
+            writer.flush();
             for (int i = 0; i < corrlda.K; i++) {
                 writer.write(corrlda.nsumm_z[i] + " ");
+                writer.flush();
             }
             writer.write("\r\n");
+            writer.flush();
             writer.write("nsumt_z\r\n");
+            writer.flush();
             for (int i = 0; i < corrlda.K; i++) {
                 writer.write(corrlda.nsumt_z[i] + " ");
+                writer.flush();
             }
             writer.write("\r\n");
+            writer.flush();
             writer.write("z\r\n");
+            writer.flush();
             for (int i = 0; i < corrlda.userlen; i++) {
                 int k = corrlda.z[i].size();
                 for (int j = 0; j < k; j++) {
                     writer.write(corrlda.z[i].get(j) + " ");
+                    writer.flush();
                 }
                 writer.write("\r\n");
+                writer.flush();
             }
             writer.write("\r\n");
+            writer.flush();
             writer.write("ztag\r\n");
+            writer.flush();
             for (int i = 0; i < corrlda.userlen; i++) {
                 int k = corrlda.ztag[i].size();
                 for (int j = 0; j < k; j++) {
                     writer.write(corrlda.ztag[i].get(j) + " ");
+                    writer.flush();
                 }
                 writer.write("\r\n");
+                writer.flush();
             }
             writer.write("\r\n");
+            writer.flush();
             writer.close();
         } catch (Exception e) {
             System.out.println("Error while reading dictionary:" + e.getMessage());

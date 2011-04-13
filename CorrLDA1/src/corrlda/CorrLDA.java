@@ -43,7 +43,7 @@ public final class CorrLDA {
     public int[] nsumm_z;//sum of all the movies assigned to topic k;
     public int[] nsumt_z;//sum of all the tags assigned to topic k;
     //configuration
-    public int nitter = 200;
+    public int nitter = 5;
     public Model movielens;
 
     public CorrLDA() {
