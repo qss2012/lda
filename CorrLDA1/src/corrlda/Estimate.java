@@ -14,7 +14,7 @@ import java.io.OutputStreamWriter;
  */
 public class Estimate {
 
-    public void estimate(CorrLDA corrlda) {
+    public void estimate(CorrLDA corrlda,int no) {
         Integer movieForU = 0;
         int topic = 0;
         int ec = 0;
@@ -44,34 +44,44 @@ public class Estimate {
                     }
                 }
             }
+            
+            if (iter % 1 == 0) {
+                computeTheta(corrlda, iter+no);
+                computePhi(corrlda, iter+no);
+                computeDigamma(corrlda, iter+no);
+                saveModel(corrlda, iter+no);
+            }
             ec = ec + 1;
             long endTime = System.currentTimeMillis();
             double time = 0;
             time = time + (endTime - startTime) / 1000;
             double timeover = time * (itertimes - ec) / 60;
             System.out.println("Ecalepsed time: " + (time) + "s, Completed in " + timeover + " m");
-            if (iter%50==0) {
-                computeTheta(corrlda, iter);
-                computePhi(corrlda, iter);
-                computeDigamma(corrlda, iter);
-            }
         }
         System.out.println("Gibbs sampling completed!\n");
         System.out.println("Saving the final model!\n");
-        computeTheta(corrlda, iter - 1);
-        computePhi(corrlda, iter - 1);
-        computeDigamma(corrlda, iter - 1);
-        saveModel(corrlda);
+        computeTheta(corrlda, iter - 1+no);
+        computePhi(corrlda, iter - 1+no);
+        computeDigamma(corrlda, iter - 1+no);
+        saveModel(corrlda, iter-1+no);
     }
 
     public void saveTheta(CorrLDA corrlda, int iter) {
         String file = "Theta.dat";
         String pendix = Integer.toString(iter);
+        if (iter < 10) {
+            pendix = "000" + Integer.toString(iter);
+        } else if (iter < 100) {
+            pendix = "00" + Integer.toString(iter);
+        } else if (iter < 1000) {
+            pendix = "0" + Integer.toString(iter);
+        }
         file = file + "_" + pendix;
         System.out.println("Saving theta...");
         try {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(file), "UTF-8"));
+                    new FileOutputStream("3000/"+file), "UTF-8"));
+            writer.write(corrlda.userlen+" "+corrlda.K+"\r\n");
             for (int u = 0; u < corrlda.userlen; u++) {
                 for (int k = 0; k < corrlda.K; k++) {
                     String t = Double.toString(corrlda.theta[u][k]);
@@ -90,12 +100,20 @@ public class Estimate {
         try {
             String file = "Phi.dat";
             String pendix = Integer.toString(iter);
+            if (iter < 10) {
+                pendix = "000" + Integer.toString(iter);
+            } else if (iter < 100) {
+                pendix = "00" + Integer.toString(iter);
+            } else if (iter < 1000) {
+                pendix = "0" + Integer.toString(iter);
+            }
             file = file + "_" + pendix;
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(file), "UTF-8"));
-            for (int u = 0; u < corrlda.userlen; u++) {
+                    new FileOutputStream("3000/"+file), "UTF-8"));
+            writer.write(corrlda.movielen+" "+corrlda.K+"\r\n");
+            for (int u = 0; u < corrlda.movielen; u++) {
                 for (int k = 0; k < corrlda.K; k++) {
-                    String t = Double.toString(corrlda.theta[u][k]);
+                    String t = Double.toString(corrlda.fine[u][k]);
                     writer.write(t + "\t");
                     writer.flush();
 
@@ -111,18 +129,26 @@ public class Estimate {
         try {
             String file = "Digamma.dat";
             String pendix = Integer.toString(iter);
+            if (iter < 10) {
+                pendix = "000" + Integer.toString(iter);
+            } else if (iter < 100) {
+                pendix = "00" + Integer.toString(iter);
+            } else if (iter < 1000) {
+                pendix = "0" + Integer.toString(iter);
+            }
             file = file + "_" + pendix;
             System.out.println("Saving digamma...");
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(file), "UTF-8"));
-            for (int u = 0; u < corrlda.userlen; u++) {
+                    new FileOutputStream("3000/"+file), "UTF-8"));
+            writer.write(corrlda.taglen+" "+corrlda.K+"\r\n");
+            for (int u = 0; u < corrlda.taglen; u++) {
                 for (int k = 0; k < corrlda.K; k++) {
-                    String t = Double.toString(corrlda.theta[u][k]);
+                    String t = Double.toString(corrlda.digamma[u][k]);
 
                     writer.write(t + " ");
                     writer.flush();
                 }
-               writer.write("\r\n");
+                writer.write("\r\n");
                 writer.flush();
             }
         } catch (Exception e) {
@@ -174,18 +200,18 @@ public class Estimate {
         int tag = Integer.parseInt(corrlda.movielens.tagData.user2tag.get(userID).get(t).toString());
         corrlda.nt_z[tag][topic] -= 1;
         corrlda.nsumt_z[topic] -= 1;
-        double movie2=(double)movie;
+        double movie2 = (double) movie;
         double Tgamma = corrlda.taglen * corrlda.gamma;
         double[] p = new double[corrlda.K];
         for (int k = 0; k < corrlda.K; k++) {
-            p[k] = corrlda.nz_u[u][k]/movie2* (corrlda.nt_z[t][k] + corrlda.gamma) / (corrlda.nsumt_z[k] + Tgamma);            
+            p[k] = corrlda.nz_u[u][k] / movie2 * (corrlda.nt_z[t][k] + corrlda.gamma) / (corrlda.nsumt_z[k] + Tgamma);
         }
-        
+
         for (int k = 1; k < corrlda.K; k++) {
             p[k] += p[k - 1];
         }
         double sample = Math.random() * p[corrlda.K - 1];
-        
+
         for (topic = 0; topic < corrlda.K; topic++) {
             if (p[topic] > sample) {
                 break;
@@ -227,10 +253,19 @@ public class Estimate {
         saveDigamma(corrlda, iter);
     }
 
-    public void saveModel(CorrLDA corrlda) {
-        String file = "model.dat";
+    public void saveModel(CorrLDA corrlda, int iter) {
+        System.out.println("Saving model...");
+        String pendix="";
+       if (iter < 10) {
+                pendix = "000" + Integer.toString(iter);
+            } else if (iter < 100) {
+                pendix = "00" + Integer.toString(iter);
+            } else if (iter < 1000) {
+                pendix = "0" + Integer.toString(iter);
+            }
+        String file = "model.dat_" +pendix;
         try {
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("3000/"+file), "UTF-8"));
             writer.write(corrlda.movielen + "::" + corrlda.userlen + "::" + corrlda.taglen + "\r\n");
             writer.write("nz_u\r\n");
             for (int i = 0; i < corrlda.userlen; i++) {
@@ -269,19 +304,19 @@ public class Estimate {
             }
             writer.write("\r\n");
             writer.write("z\r\n");
-            for(int i=0;i<corrlda.userlen;i++){
-                int k=corrlda.z[i].size();
-                for(int j=0;j<k;j++){
-                    writer.write(corrlda.z[i].get(j)+" ");
+            for (int i = 0; i < corrlda.userlen; i++) {
+                int k = corrlda.z[i].size();
+                for (int j = 0; j < k; j++) {
+                    writer.write(corrlda.z[i].get(j) + " ");
                 }
                 writer.write("\r\n");
             }
             writer.write("\r\n");
             writer.write("ztag\r\n");
-            for(int i=0;i<corrlda.userlen;i++){
-                int k=corrlda.ztag[i].size();
-                for(int j=0;j<k;j++){
-                    writer.write(corrlda.ztag[i].get(j)+" ");
+            for (int i = 0; i < corrlda.userlen; i++) {
+                int k = corrlda.ztag[i].size();
+                for (int j = 0; j < k; j++) {
+                    writer.write(corrlda.ztag[i].get(j) + " ");
                 }
                 writer.write("\r\n");
             }

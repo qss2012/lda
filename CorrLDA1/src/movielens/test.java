@@ -22,13 +22,10 @@ public class test {
     }
 
     public static void main(String args[]) {
-        int i;
         
-        for(i=0;i<50;i++){
-            if(i%5==0)
-                System.out.println(i);
-        }
-        
+        double a=0.323212;
+        double b=0.1264545;
+        System.out.println(Math.pow(a-b,2));
     }
 }
 

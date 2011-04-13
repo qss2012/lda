@@ -4,9 +4,13 @@
  */
 package corrlda;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 import java.util.Vector;
 
 /**
@@ -39,7 +43,7 @@ public final class CorrLDA {
     public int[] nsumm_z;//sum of all the movies assigned to topic k;
     public int[] nsumt_z;//sum of all the tags assigned to topic k;
     //configuration
-    public int nitter = 5000;
+    public int nitter = 200;
     public Model movielens;
 
     public CorrLDA() {
@@ -52,8 +56,18 @@ public final class CorrLDA {
 
     public static void main(String args[]) {
         Estimate estimate = new Estimate();
+        int b = 0;
+        /*
+        String lastModel="3000/model.dat_101";
+        StringTokenizer tknz=new StringTokenizer(lastModel,"_");
+        String a=tknz.nextToken();
+        a=tknz.nextToken();        
+        b=Integer.parseInt(a);
+         */
         CorrLDA corrlda = new CorrLDA();
-        estimate.estimate(corrlda);
+        corrlda.initialize(corrlda.movielens);
+        //corrlda.readModel(corrlda, lastModel);
+        estimate.estimate(corrlda, b);
         System.out.println("OMG finished");
     }
 
@@ -137,12 +151,12 @@ public final class CorrLDA {
                     for (t = 0; t < T; t++) {
                         int zID = (int) Math.floor(Math.random() * M);
                         int topic = z[u].get(zID);
-                        ztag[u].add(topic);                      
+                        ztag[u].add(topic);
                         int tag = Integer.parseInt(model.tagData.user2tag.get(userID).get(t).toString());
                         //number of tag assigend to topic
                         nt_z[tag][topic] += 1;
                         nsumt_z[topic] += 1;
-                        
+
                     }
                 }
 
@@ -152,9 +166,117 @@ public final class CorrLDA {
             System.out.println("Error while reading dictionary:" + e.getMessage());
             e.printStackTrace();
         }
-        
-        
+
+
         System.out.println("CorrLda is totally initialized.");
-       
+
+    }
+
+    public void readModel(CorrLDA corrlda, String filename) {
+        try {
+            System.out.println("Reading " + filename);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
+            System.out.println("File ready");
+            String line = reader.readLine();
+            StringTokenizer tknz = new StringTokenizer(line, "::\r\n");
+            corrlda.movielen = Integer.parseInt(tknz.nextToken().toString());
+            corrlda.userlen = Integer.parseInt(tknz.nextToken().toString());
+            corrlda.taglen = Integer.parseInt(tknz.nextToken().toString());
+            corrlda.nm_z = new int[corrlda.movielen][corrlda.K];
+            corrlda.nz_u = new int[corrlda.userlen][corrlda.K];
+            corrlda.nt_z = new int[corrlda.taglen][corrlda.K];
+            corrlda.nsumm_z = new int[corrlda.K];
+            corrlda.nsumt_z = new int[corrlda.K];
+            corrlda.nsumz_u = new int[corrlda.userlen];
+            corrlda.theta = new double[corrlda.userlen][corrlda.K];
+            corrlda.fine = new double[corrlda.movielen][corrlda.K];
+            corrlda.digamma = new double[corrlda.taglen][corrlda.K];
+            line = reader.readLine();
+            if (line.equals("nz_u")) {
+                System.out.println("Reading nz_u...");
+                for (int i = 0; i < corrlda.userlen; i++) {
+                    line = reader.readLine();
+                    tknz = new StringTokenizer(line, " ");
+                    for (int j = 0; j < corrlda.K; j++) {
+                        corrlda.nz_u[i][j] = Integer.parseInt(tknz.nextToken().toString());
+                    }
+                }
+            }
+            line = reader.readLine();
+            if (line.equals("nm_z")) {
+                for (int i = 0; i < corrlda.movielen; i++) {
+                    line = reader.readLine();
+                    tknz = new StringTokenizer(line, " ");
+                    for (int j = 0; j < corrlda.K; j++) {
+                        corrlda.nm_z[i][j] = Integer.parseInt(tknz.nextToken().toString());
+                    }
+                }
+            }
+            line = reader.readLine();
+            if (line.equals("nt_z")) {
+                for (int i = 0; i < corrlda.taglen; i++) {
+                    line = reader.readLine();
+                    tknz = new StringTokenizer(line, " ");
+                    for (int j = 0; j < corrlda.K; j++) {
+                        corrlda.nt_z[i][j] = Integer.parseInt(tknz.nextToken().toString());
+                    }
+                }
+            }
+            line = reader.readLine();
+            if (line.equals("nsumz_u")) {
+                line = reader.readLine();
+                tknz = new StringTokenizer(line, " ");
+                for (int i = 0; i < corrlda.userlen; i++) {
+                    corrlda.nsumz_u[i] = Integer.parseInt(tknz.nextToken().toString());
+                }
+            }
+            line = reader.readLine();
+            if (line.equals("nsumm_z")) {
+                line = reader.readLine();
+                tknz = new StringTokenizer(line, " ");
+                for (int i = 0; i < corrlda.K; i++) {
+                    corrlda.nsumm_z[i] = Integer.parseInt(tknz.nextToken().toString());
+                }
+            }
+            line = reader.readLine();
+            if (line.equals("nsumt_z")) {
+                line = reader.readLine();
+                tknz = new StringTokenizer(line, " ");
+                for (int i = 0; i < corrlda.K; i++) {
+                    corrlda.nsumt_z[i] = Integer.parseInt(tknz.nextToken().toString());
+                }
+            }
+            line = reader.readLine();
+            corrlda.z = new Vector[corrlda.userlen];
+            corrlda.ztag = new Vector[corrlda.userlen];
+            if (line.equals("z")) {
+                for (int i = 0; i < corrlda.userlen; i++) {
+                    line = reader.readLine();
+                    tknz = new StringTokenizer(line, " ");
+                    int len = tknz.countTokens();
+                    corrlda.z[i] = new Vector(len);
+                    for (int j = 0; j < len; j++) {
+                        corrlda.z[i].add(j, Integer.parseInt(tknz.nextToken()));
+                    }
+                }
+            }
+            line = reader.readLine();
+            line = reader.readLine();
+            if (line.equals("ztag")) {
+                for (int i = 0; i < corrlda.userlen; i++) {
+                    line = reader.readLine();
+                    tknz = new StringTokenizer(line, " ");
+                    int len = tknz.countTokens();
+                    corrlda.ztag[i] = new Vector(len);
+                    for (int j = 0; j < len; j++) {
+                        corrlda.ztag[i].add(j, Integer.parseInt(tknz.nextToken()));
+                    }
+                }
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
