@@ -45,11 +45,12 @@ public class Estimate {
                 }
             }
 
-            if (iter % 1 == 0) {
+            if (iter % corrlda.step == 0) {
                 computeTheta(corrlda, iter + no);
                 computePhi(corrlda, iter + no);
                 computeDigamma(corrlda, iter + no);
-                saveModel(corrlda, iter + no);
+                //saveModel(corrlda, iter + no);
+                clik(corrlda);
             }
             ec = ec + 1;
             long endTime = System.currentTimeMillis();
@@ -63,7 +64,45 @@ public class Estimate {
         computeTheta(corrlda, iter - 1 + no);
         computePhi(corrlda, iter - 1 + no);
         computeDigamma(corrlda, iter - 1 + no);
-        saveModel(corrlda, iter - 1 + no);
+        //saveModel(corrlda, iter - 1 + no);
+        clik(corrlda);
+    }
+
+    public double clik(CorrLDA corrlda) {
+        int nitter = corrlda.nitter;
+        int step = corrlda.step;
+        int n = (int) Math.ceil(nitter / step);
+        double likelihood = 1.0;
+        Object[] userIDset = corrlda.movielens.userData.userid2doc.keySet().toArray();
+        double[][] theta = corrlda.theta;
+        double[][] phi = corrlda.fine;
+        double[][] digamma = corrlda.digamma;
+        int userlen = corrlda.movielens.userlen;
+        int movielen = corrlda.movielens.itemlen;
+        int taglen = corrlda.movielens.taglen;
+        int K = corrlda.K;
+        for (int k = 0; k < K; k++) {
+            for (int u = 0; u < userlen; u++) {
+                int userID = Integer.parseInt(userIDset[u].toString());
+                double usermovie = (double) corrlda.movielens.userData.userid2doc.get(userID).size();
+                likelihood *= (theta[u][k] / usermovie);
+                for (int m = 0; m < movielen; m++) {
+                    if (phi[m][k] == 0) {
+                        System.out.println("0");
+                    }
+                    likelihood *= phi[m][k];
+                }
+                for (int t = 0; t < taglen; t++) {
+                    if (digamma[t][k] == 0) {
+                        System.out.println("0");
+                    }
+                    likelihood *= digamma[t][k];
+                }
+            }
+        }
+        System.out.println(likelihood);
+
+        return likelihood;
     }
 
     public void saveTheta(CorrLDA corrlda, int iter) {
@@ -233,27 +272,56 @@ public class Estimate {
             for (int k = 0; k < corrlda.K; k++) {
                 corrlda.fine[m][k] = (corrlda.nm_z[m][k] + corrlda.beta) / (corrlda.nsumm_z[k] + corrlda.movielen * corrlda.beta);
             }
+
         }
-        savePhi(corrlda, iter);
+        for (int k = 0; k < corrlda.K; k++) {
+            double sum=0;
+            for (int t = 0; t < corrlda.movielen; t++) {
+                sum+=corrlda.fine[t][k];
+            }
+            for (int t = 0; t < corrlda.movielen; t++) {
+                corrlda.fine[t][k]/=sum;
+            }
+        }
+        // savePhi(corrlda, iter);
     }
 
     public void computeTheta(CorrLDA corrlda, int iter) {
         for (int u = 0; u < corrlda.userlen; u++) {
+            double sum = 0;
             for (int k = 0; k < corrlda.K; k++) {
                 corrlda.theta[u][k] = (corrlda.nz_u[u][k] + corrlda.alpha) / (corrlda.nsumz_u[u] + corrlda.K * corrlda.alpha);
+                sum += corrlda.theta[u][k];
             }
-        }
+            for (int k = 0; k < corrlda.K; k++) {
+                corrlda.theta[u][k] /= sum;
+            }
 
-        saveTheta(corrlda, iter);
+        }
+        
+
+        //  saveTheta(corrlda, iter);
     }
 
     public void computeDigamma(CorrLDA corrlda, int iter) {
+
         for (int t = 0; t < corrlda.taglen; t++) {
+
             for (int k = 0; k < corrlda.K; k++) {
                 corrlda.digamma[t][k] = (corrlda.nt_z[t][k] + corrlda.gamma) / (corrlda.nsumt_z[k] + corrlda.taglen * corrlda.gamma);
             }
         }
-        saveDigamma(corrlda, iter);
+
+        for (int k = 0; k < corrlda.K; k++) {
+            double sum=0;
+            for (int t = 0; t < corrlda.taglen; t++) {
+                sum+=corrlda.digamma[t][k];
+            }
+            for (int t = 0; t < corrlda.taglen; t++) {
+                corrlda.digamma[t][k]/=sum;
+            }
+        }
+        // saveDigamma(corrlda, iter);
     }
 
     public void saveModel(CorrLDA corrlda, int iter) {

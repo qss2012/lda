@@ -20,50 +20,88 @@ import java.util.Vector;
  * @author kaldr
  */
 public class lik {
+
     CorrLDA corrlda;
-    public void lik() {
-        corrlda=new CorrLDA();
-        corrlda.movielens = new Model();
-        corrlda.initialize(corrlda.movielens);
-        int userlen=corrlda.movielens.userlen;
-        int movielen=corrlda.movielens.itemlen;
-        int taglen=corrlda.movielens.taglen;
-        int K=50;
+
+    public lik() {
+        corrlda = new CorrLDA();
+        corrlda.readModel(corrlda, "model.dat_0001");
+        int userlen = corrlda.userlen;
+        int movielen = corrlda.movielen;
+        int taglen = corrlda.taglen;
+        int K = corrlda.K;
         corrlda.theta = new double[userlen][K];
         corrlda.fine = new double[movielen][K];
         corrlda.digamma = new double[taglen][K];
     }
 
     public static void main(String arg[]) {
-        lik likehood=new lik();
-        ArrayList filenames=likehood.getFiles();
-        System.out.println(filenames);
-        likehood.clik2((String) filenames.get(0));
-        
+        lik likehood = new lik();
+        likehood.clik(likehood.corrlda);
     }
 
-    public void clik2(String file) {
-        try{
-            double[][] array=readFile(file);
-            System.out.println(array);
-        }catch(Exception e){
+    public void clik(CorrLDA corrlda) {
+        try {
+
+            int nitter = 5;
+            int step = 1;
+            int n = (int) Math.ceil(nitter / step);
+            double likelihood = 1.0;
+            for (int i = 1; i < n + 1; i++) {
+                readPara(corrlda, i);
+                Object[] userIDset = corrlda.movielens.userData.userid2doc.keySet().toArray();
+                double[][] theta = corrlda.theta;
+                double[][] phi = corrlda.fine;
+                double[][] digamma = corrlda.digamma;
+                int userlen = corrlda.movielens.userlen;
+                int movielen = corrlda.movielens.itemlen;
+                int taglen = corrlda.movielens.taglen;
+                int K = corrlda.K;
+                for (int k = 0; k < K; k++) {
+                    for (int u = 0; u < userlen; u++) {
+                        int userID = Integer.parseInt(userIDset[u].toString());
+                        double usermovie = (double) corrlda.movielens.userData.userid2doc.get(userID).size();
+                        likelihood *= theta[u][k] / usermovie;
+                        for (int m = 0; m < movielen; m++) {
+                            likelihood *= phi[m][k];
+                        }
+                        for (int t = 0; t < taglen; t++) {
+                            likelihood *= digamma[t][k];
+                        }
+                    }
+                }
+                System.out.println(likelihood);
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
+
         }
-        double[][] theta = new double[1723][50];
-        double[][] lasttheta = new double[1723][50];
     }
-    public void clik(ArrayList files) {
-        try{
-            
-            double[][] array=readFile((String) files.get(1));
-            System.out.println(array);
-        }catch(Exception e){
-            e.printStackTrace();
+
+    public void readPara(CorrLDA corrlda, int flag) {
+        String file;
+        int step = 1;
+        int iter = flag * step;
+        String pendix = Integer.toString(iter);
+        if (iter < 10) {
+            pendix = "000" + Integer.toString(iter);
+        } else if (iter < 100) {
+            pendix = "00" + Integer.toString(iter);
+        } else if (iter < 1000) {
+            pendix = "0" + Integer.toString(iter);
         }
-        double[][] theta = new double[1723][50];
-        double[][] lasttheta = new double[1723][50];
+        file = "Theta.dat_" + pendix;
+        corrlda.theta = readFile(file);
+        file = "Phi.dat_" + pendix;
+        corrlda.fine = readFile(file);
+        file = "Digamma.dat_" + pendix;
+        corrlda.digamma = readFile(file);
+        file = "model.dat_" + pendix;
+        //readModel(corrlda, file);
     }
-    public void readModel(CorrLDA corrlda,String filename){
+
+    public void readModel(CorrLDA corrlda, String filename) {
         try {
             System.out.println("Reading " + filename);
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
@@ -84,23 +122,14 @@ public class lik {
             corrlda.digamma = new double[corrlda.taglen][corrlda.K];
             line = reader.readLine();
             if (line.equals("nz_u")) {
-                System.out.println("Reading nz_u...");
-                for (int i = 0; i < corrlda.userlen; i++) {
+                while (!line.equals("nm_z")) {
                     line = reader.readLine();
-                    tknz = new StringTokenizer(line, " ");
-                    for (int j = 0; j < corrlda.K; j++) {
-                        corrlda.nz_u[i][j] = Integer.parseInt(tknz.nextToken().toString());
-                    }
                 }
             }
-            line = reader.readLine();
+            
             if (line.equals("nm_z")) {
-                for (int i = 0; i < corrlda.movielen; i++) {
+                 while (!line.equals("nm_z")) {
                     line = reader.readLine();
-                    tknz = new StringTokenizer(line, " ");
-                    for (int j = 0; j < corrlda.K; j++) {
-                        corrlda.nm_z[i][j] = Integer.parseInt(tknz.nextToken().toString());
-                    }
                 }
             }
             line = reader.readLine();
@@ -169,43 +198,42 @@ public class lik {
             e.printStackTrace();
         }
     }
-    public double[][] readFile(String file){
-        try{            
-            BufferedReader reader=new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
-            String line=reader.readLine();
-            StringTokenizer tknz=new StringTokenizer(line," \r\n");
-            int no=Integer.parseInt(tknz.nextToken());
-            int topic=Integer.parseInt(tknz.nextToken());
-            System.out.println(topic);
-            double[][] array=new double[no][topic];
-            for(int i=0;i<no;i++){
-                line=reader.readLine();
-                
-                while(line==null){
-                    line=reader.readLine();
+
+    public double[][] readFile(String file) {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+            String line = reader.readLine();
+            StringTokenizer tknz = new StringTokenizer(line, " \r\n");
+            int no = Integer.parseInt(tknz.nextToken());
+            int topic = Integer.parseInt(tknz.nextToken());
+
+            double[][] array = new double[no][topic];
+            for (int i = 0; i < no; i++) {
+                line = reader.readLine();
+
+                while (line == null) {
+                    line = reader.readLine();
                 }
-                tknz=new StringTokenizer(line,"\t \r\n");
-                for(int j=0;j<topic;j++){
-                    array[i][j]=Double.parseDouble(tknz.nextToken());
-                    if(tknz.countTokens()==topic){
-                        
-                    }else{
-                        System.out.println("Error writing "+file+",  it has "+tknz.countTokens()+" topics in line "+i);
-                       System.out.println(line);
-                        //System.exit(0);
+                tknz = new StringTokenizer(line, "\t \r\n");
+                for (int j = 0; j < topic; j++) {
+                    array[i][j] = Double.parseDouble(tknz.nextToken());
+                    if (array[i][j] == 0) {
+                        System.out.println("line " + i + " " + j + " topic is 0");
                     }
                 }
             }
             return array;
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-        
-        
+
+
     }
+
     public ArrayList getFiles() {
-        File folder = new File("/home/kaldr/NetBeansProjects/CorrLDA/src/zico/del/3000");
+        //File folder = new File("/home/kaldr/NetBeansProjects/CorrLDA/src/zico/del/3000");
+        File folder = new File("E:\\Research\\LDA code\\CorrLDA1\\src\\zico\\del\\3000");
         File[] fs = folder.listFiles();
         StringTokenizer tknz;
         ArrayList fsname = new ArrayList();

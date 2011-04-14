@@ -36,6 +36,7 @@ public final class CorrLDA {
     public int movielen;
     public int userlen;
     public int taglen;
+    
     public int[][] nz_u;//number of times that topic z has occured in user u;
     public int[][] nm_z;//number of times the movie m is assigned to topic z;
     public int[][] nt_z;//number of times tag t is generated from topic z;
@@ -44,6 +45,7 @@ public final class CorrLDA {
     public int[] nsumt_z;//sum of all the tags assigned to topic k;
     //configuration
     public int nitter = 5;
+    public int step=1;
     public Model movielens;
 
     public CorrLDA() {

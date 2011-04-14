@@ -25,9 +25,13 @@ public class test {
     public static void main(String args[]) {
         String c="Lady is baby is fucked \r\n";
         StringTokenizer tknz=new StringTokenizer(c," ");
-        double a=0.323212;
+        double a=1;
         double b=0.1264545;
-        System.out.println(tknz.countTokens());
+        for(int i=0;i<10;i++){
+            a*=b/7;
+            System.out.println(a);
+        }
+
     }
 }
 
