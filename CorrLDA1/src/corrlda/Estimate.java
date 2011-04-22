@@ -32,7 +32,6 @@ public class Estimate {
             for (int u = 0; u < corrlda.userlen; u++) {
                 int userID = Integer.parseInt(userIDset[u].toString());
                 movieForU = corrlda.movielens.userData.userid2doc.get(userID).size();
-
                 for (int m = 0; m < movieForU; m++) {
                     topic = samplingMovieTopic(u, m, corrlda);
                     corrlda.z[u].set(m, topic);
@@ -93,12 +92,15 @@ public class Estimate {
                     }
                     likelihood += theta[u][k]*phi[m][k];
                 }
+                /*
                 for (int t = 0; t < taglen; t++) {
                     if (digamma[t][k] == 0) {
                         System.out.println("0");
                     }
                     //likelihood += digamma[t][k]/usermovie;
                 }
+                 * 
+                 */
             }
         }
         System.out.println(likelihood);

@@ -36,7 +36,7 @@ public class AUC {
         double trainitemrand;
         for(int i=0;i<auctime;i++){
             testuserrand=Math.random();
-            testuserid=Math.ceil(testuserrand*);
+            //testuserid=Math.ceil(testuserrand*);
             
             auc+=0;
         }
