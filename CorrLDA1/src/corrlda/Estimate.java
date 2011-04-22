@@ -16,6 +16,7 @@ public class Estimate {
 
     public void estimate(CorrLDA corrlda, int no) {
         Integer movieForU = 0;
+        AUC auc=new AUC();
         int topic = 0;
         int ec = 0;
         Object[] userIDset = corrlda.movielens.userData.userid2doc.keySet().toArray();
@@ -50,7 +51,7 @@ public class Estimate {
                 computePhi(corrlda, iter + no);
                 computeDigamma(corrlda, iter + no);
                 //saveModel(corrlda, iter + no);
-                clik(corrlda);
+                
             }
             ec = ec + 1;
             long endTime = System.currentTimeMillis();
@@ -65,7 +66,7 @@ public class Estimate {
         computePhi(corrlda, iter - 1 + no);
         computeDigamma(corrlda, iter - 1 + no);
         //saveModel(corrlda, iter - 1 + no);
-        clik(corrlda);
+        System.out.println(auc.computeAUC(corrlda));
     }
 
     public double clik(CorrLDA corrlda) {
@@ -85,18 +86,18 @@ public class Estimate {
             for (int u = 0; u < userlen; u++) {
                 int userID = Integer.parseInt(userIDset[u].toString());
                 double usermovie = (double) corrlda.movielens.userData.userid2doc.get(userID).size();
-                likelihood *= (theta[u][k] / usermovie);
+               
                 for (int m = 0; m < movielen; m++) {
                     if (phi[m][k] == 0) {
                         System.out.println("0");
                     }
-                    likelihood *= phi[m][k];
+                    likelihood += theta[u][k]*phi[m][k];
                 }
                 for (int t = 0; t < taglen; t++) {
                     if (digamma[t][k] == 0) {
                         System.out.println("0");
                     }
-                    likelihood *= digamma[t][k];
+                    //likelihood += digamma[t][k]/usermovie;
                 }
             }
         }
@@ -283,6 +284,8 @@ public class Estimate {
                 corrlda.fine[t][k]/=sum;
             }
         }
+           
+          
         // savePhi(corrlda, iter);
     }
 
@@ -293,9 +296,11 @@ public class Estimate {
                 corrlda.theta[u][k] = (corrlda.nz_u[u][k] + corrlda.alpha) / (corrlda.nsumz_u[u] + corrlda.K * corrlda.alpha);
                 sum += corrlda.theta[u][k];
             }
+            
             for (int k = 0; k < corrlda.K; k++) {
                 corrlda.theta[u][k] /= sum;
             }
+             
 
         }
         
@@ -311,7 +316,7 @@ public class Estimate {
                 corrlda.digamma[t][k] = (corrlda.nt_z[t][k] + corrlda.gamma) / (corrlda.nsumt_z[k] + corrlda.taglen * corrlda.gamma);
             }
         }
-
+        
         for (int k = 0; k < corrlda.K; k++) {
             double sum=0;
             for (int t = 0; t < corrlda.taglen; t++) {
@@ -321,6 +326,7 @@ public class Estimate {
                 corrlda.digamma[t][k]/=sum;
             }
         }
+         
         // saveDigamma(corrlda, iter);
     }
 

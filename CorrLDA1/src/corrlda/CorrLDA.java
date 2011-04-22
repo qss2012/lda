@@ -23,10 +23,11 @@ public final class CorrLDA {
      */
     //Parameters
 
-    public double alpha = 0.1;
-    public double beta = 0.1;
-    public double gamma = 0.1;
-    public Integer K = 50;//k is the topic number;
+    
+    public Integer K = 150;//k is the topic number;
+    public double alpha =1;
+    public double beta = 2;
+    public double gamma =10;
     public double[][] theta;//theta is the topic distribution for each user; theta=p(z|user); theta~Dir(alpha)
     public Vector<Integer>[] z;//z is the topic chosen for a movie; z~mul(theta)
     public Vector<Integer>[] ztag;//ztag is the topic chosen for a tag; ztag~uni(z)
@@ -44,8 +45,8 @@ public final class CorrLDA {
     public int[] nsumm_z;//sum of all the movies assigned to topic k;
     public int[] nsumt_z;//sum of all the tags assigned to topic k;
     //configuration
-    public int nitter = 5;
-    public int step=1;
+    public int nitter = 500;
+    public int step=10;
     public Model movielens;
 
     public CorrLDA() {
