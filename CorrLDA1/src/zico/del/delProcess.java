@@ -31,23 +31,58 @@ public class delProcess {
 
     public static void main(String args[]) {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("tags.dat"), "UTF-8"));
-            
-            BufferedWriter tagswriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("train/tags.dat"), "UTF-8"));
-            BufferedWriter ttagswriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("test/tags.dat"), "UTF-8"));
+            int[][] data = new int[43726][2];
+            int[] datastate = new int[43726];
+            ArrayList itemList = new ArrayList();
+            ArrayList userList = new ArrayList();
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("tags.dat"), "UTF-8"));
+                BufferedWriter tagswriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("train/tags.dat"), "UTF-8"));
+                BufferedWriter ttagswriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("test/tags.dat"), "UTF-8"));
 
-            String line = reader.readLine();
-            double rand;
-            while (line != null) {
-                rand = Math.random();
-                if (rand < 0.9) {
-                    tagswriter.write(line + "\r\n");
-                } else {
-                    ttagswriter.write(line + "\r\n");
+                String line = reader.readLine();
+                StringTokenizer tknz;
+                int user;
+                int item;
+                int i = 0;
+                double rand;
+                while (line != null) {
+                    tknz = new StringTokenizer(line, "::\r\n");
+                    user = Integer.parseInt(tknz.nextToken());
+                    item = Integer.parseInt(tknz.nextToken());
+                    datastate[i] = 0;
+                    if (!itemList.contains(item)) {
+                        itemList.add(item);
+                        datastate[i] = 1;
+                    }
+                    if (!userList.contains(user)) {
+                        userList.add(user);
+                        datastate[i] = 1;
+                    }
+                    rand = Math.random();
+                    if (datastate[i] == 0) {
+                        if (rand < 0.126) {
+                            ttagswriter.write(line + "\r\n");
+                            ttagswriter.flush();
+                        } else {
+                            tagswriter.write(line + "\r\n");
+                            ttagswriter.flush();
+                        }
+                    } else {
+                        tagswriter.write(line + "\r\n");
+                        ttagswriter.flush();
+                    }
+                    data[i][0] = user;
+                    data[i][1] = item;
+                    i += 1;
+                    line = reader.readLine();
                 }
-                line = reader.readLine();
+                tagswriter.close();
+                ttagswriter.close();
+                reader.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            reader.close();
             tagsProcess("train");
             tagsProcess("test");
         } catch (Exception e) {
@@ -58,28 +93,31 @@ public class delProcess {
     public static void tagsProcess(String folder) {
 
         try {
-            BufferedReader tagdoc = new BufferedReader(new InputStreamReader(new FileInputStream(folder+"/tags.dat"), "UTF-8"));
+            BufferedReader tagdoc = new BufferedReader(new InputStreamReader(new FileInputStream(folder + "/tags.dat"), "UTF-8"));
             BufferedWriter moviewriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(folder + "/movies.dat"), "UTF-8"));
             BufferedWriter umwriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(folder + "/userwithmovies.dat"), "UTF-8"));
             ArrayList itemlist = new ArrayList();
             String line = tagdoc.readLine();
-            
+
             StringTokenizer tknz = new StringTokenizer(line, "::\r\n");
             int user = Integer.parseInt(tknz.nextToken());
             int item = Integer.parseInt(tknz.nextToken());
             int tag = Integer.parseInt(tknz.nextToken());
-            int lastuser=0;
+            int lastuser = 0;
             while (line != null) {
-                if(!itemlist.contains(item)){
-                    itemlist.add(item);                    
-                    moviewriter.write(item+"::"+item+"\r\n");
+                if (!itemlist.contains(item)) {
+                    itemlist.add(item);
+                    moviewriter.write(item + "::" + item + "\r\n");
+                    moviewriter.flush();
                 }
-                if(lastuser!=user){
-                    umwriter.write("\r\n"+user+" "+item+" ");
-                }else{
-                    umwriter.write(item+" ");
+                if (lastuser != user) {
+                    umwriter.write("\r\n" + user + " " + item + " ");
+                    umwriter.flush();
+                } else {
+                    umwriter.write(item + " ");
+                    umwriter.flush();
                 }
-                lastuser=user;
+                lastuser = user;
                 line = tagdoc.readLine();
                 tknz = new StringTokenizer(line, "::\r\n");
                 user = Integer.parseInt(tknz.nextToken());

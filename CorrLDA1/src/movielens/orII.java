@@ -24,11 +24,13 @@ public class orII {
     public HashMap<Integer, String> id_title;
     public HashMap<String, Integer> title_id;
     public HashMap<Integer,Integer>id_idr;
+    public HashMap<Integer,Integer>idr_id;
 
     public orII() {
         id_title = new HashMap<Integer, String>();
         title_id = new HashMap<String, Integer>();
         id_idr=new HashMap<Integer,Integer>();
+        idr_id=new HashMap<Integer,Integer>();
     }
     
     //readMovie
@@ -65,8 +67,10 @@ public class orII {
                 id_title.put(intID, word);
                 title_id.put(word, intID);
                 id_idr.put(intID,i);
+                idr_id.put(i,intID);
                 if (findit == 0) {
                     writer.write(i + "::" + intID+"\r\n");
+                    writer.flush();
                 }
                 line = reader.readLine();
                 i++;

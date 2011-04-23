@@ -19,10 +19,12 @@ public class orUser {
 
     public HashMap<Integer, ArrayList> userid2doc;
     public HashMap<Integer,Integer>id_idr;
+    public HashMap<Integer,Integer>idr_id;
 
     public orUser() {
         userid2doc = new HashMap<Integer, ArrayList>();
         id_idr=new HashMap<Integer,Integer>();
+        idr_id=new HashMap<Integer,Integer>();
     }
 
     public void readForItem(String filename) {
@@ -47,6 +49,7 @@ public class orUser {
                  Integer id = Integer.parseInt(userid);
                 userid2doc.put(id,b);
                 id_idr.put(id,i);
+                idr_id.put(i,id);
                 for (int j = 1; j < tknrlen-1; j++) {
                     doc = tknr.nextToken();
                     userid2doc.get(id).add(doc);

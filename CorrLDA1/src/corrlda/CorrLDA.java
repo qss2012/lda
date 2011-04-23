@@ -23,11 +23,10 @@ public final class CorrLDA {
      */
     //Parameters
 
-    
-    public Integer K = 150;//k is the topic number;
-    public double alpha =1;
+    public Integer K = 50;//k is the topic number;
+    public double alpha = 1;
     public double beta = 2;
-    public double gamma =10;
+    public double gamma = 1;
     public double[][] theta;//theta is the topic distribution for each user; theta=p(z|user); theta~Dir(alpha)
     public Vector<Integer>[] z;//z is the topic chosen for a movie; z~mul(theta)
     public Vector<Integer>[] ztag;//ztag is the topic chosen for a tag; ztag~uni(z)
@@ -37,7 +36,6 @@ public final class CorrLDA {
     public int movielen;
     public int userlen;
     public int taglen;
-    
     public int[][] nz_u;//number of times that topic z has occured in user u;
     public int[][] nm_z;//number of times the movie m is assigned to topic z;
     public int[][] nt_z;//number of times tag t is generated from topic z;
@@ -45,8 +43,8 @@ public final class CorrLDA {
     public int[] nsumm_z;//sum of all the movies assigned to topic k;
     public int[] nsumt_z;//sum of all the tags assigned to topic k;
     //configuration
-    public int nitter = 500;
-    public int step=10;
+    public int nitter = 1;
+    public int step = 10;
     public Model movielens;
 
     public CorrLDA() {
@@ -83,15 +81,15 @@ public final class CorrLDA {
         userlen = model.userlen;
         taglen = model.taglen;
         nz_u = new int[userlen][K];
-        System.out.println("nz_u ready");
+        //System.out.println("nz_u ready");
         nm_z = new int[movielen][K];
-        System.out.println("nm_z ready");
+        // System.out.println("nm_z ready");
         nt_z = new int[taglen][K];
-        System.out.println("nt_z ready");
+        // System.out.println("nt_z ready");
         nsumz_u = new int[userlen];
         nsumm_z = new int[K];
         nsumt_z = new int[K];
-        System.out.println("nsum ready");
+        // System.out.println("nsum ready");
 
         System.out.println("******************************\nThe Parameter is initializing.\n******************************\n");
         for (int i = 0; i < userlen; i++) {
@@ -125,11 +123,12 @@ public final class CorrLDA {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("usermap.dat"), "UTF-8"));
             int u, m, t;
             for (u = 0; u < userlen; u++) {//i is user
+
                 int userID = Integer.parseInt(userIDset[u].toString());
-
-
+                System.out.print("\r\nuser " + userID + ":");
                 int M = model.userData.userid2doc.get(userID).size();//number of movies of a user;corrlda.movielens.userData.userid2doc.get(userID).size();
                 writer.write(u + "::" + userID + "\r\n");
+                writer.flush();
                 int T = 0;
                 z[u] = new Vector();
                 ztag[u] = new Vector();
@@ -138,9 +137,8 @@ public final class CorrLDA {
 
                     int topic = (int) Math.floor(Math.random() * K);
                     int movieIDr = Integer.parseInt(model.userData.userid2doc.get(userID).get(m).toString());
-
                     int movieID = model.itemData.id_idr.get(movieIDr);
-
+                    System.out.print(movieID + " ");
                     z[u].add(topic);
                     //number of topic occured in user u
                     nz_u[u][topic] += 1;
@@ -167,6 +165,7 @@ public final class CorrLDA {
             writer.close();
         } catch (Exception e) {
             System.out.println("Error while reading dictionary:" + e.getMessage());
+
             e.printStackTrace();
         }
 

@@ -64,6 +64,7 @@ public class Estimate {
         computeTheta(corrlda, iter - 1 + no);
         computePhi(corrlda, iter - 1 + no);
         computeDigamma(corrlda, iter - 1 + no);
+        
         //saveModel(corrlda, iter - 1 + no);
         System.out.println(auc.computeAUC(corrlda));
     }
