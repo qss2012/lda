@@ -2,6 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+/**
+ *
+ * @author Administrator
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package corrlda;
 
 import java.io.BufferedReader;
@@ -20,14 +28,47 @@ import java.util.StringTokenizer;
  *
  * @author Administrator
  */
-public class AUC {
+public class AUC_mt implements Runnable {
 
-    public AUC() {
+    double[][] score;
+    CorrLDA corrlda;
+    int startuser;
+
+    public AUC_mt(int startuser2, CorrLDA corrlda2) {
+        startuser = startuser2;
+        corrlda = corrlda2;
+        
+    }
+
+    public void run() {
+        int topic = corrlda.K;
+        int userlen = corrlda.userlen;
+        int movielen = corrlda.movielen;
+        int taglen = corrlda.taglen;
+        int enduser = startuser + 1000;
+        if (enduser > userlen) {
+            enduser = userlen;
+        }
+       
+        for (int i = startuser; i < enduser; i++) {
+            
+            for (int j = 0; j < movielen; j++) {
+                score[i][j] = 0;
+                for (int k = 0; k < topic; k++) {
+                    for (int t = 0; t < taglen; t++) {
+                        score[i][j] += corrlda.theta[i][k] + corrlda.fine[j][k] + corrlda.digamma[t][k];
+                    }
+                }
+            }
+
+        }
+        System.out.println("100 done");
+        return;
     }
 
     public double computeAUC(CorrLDA corrlda) {
         double auc = 0;
-        double score[][] = computeScore(corrlda);
+        computeScore(corrlda);
         HashMap<Integer, ArrayList> testuser2item = getTestData(); //Get the  user item list in the test data;
         HashMap<Integer, ArrayList> trainuser2item = corrlda.movielens.userData.userid2doc;
         HashMap<Integer, Integer> user2ID = corrlda.movielens.userData.id_idr;
@@ -36,7 +77,7 @@ public class AUC {
         HashMap<Integer, Integer> itemID2i = corrlda.movielens.itemData.idr_id;
         Object[] testuserset = testuser2item.keySet().toArray();
 
-        int auctime = 1;
+        int auctime = 10000;
 
         int userno = userID2i.size();
         int itemno = itemID2i.size();
@@ -143,50 +184,11 @@ public class AUC {
 
     }
 
-    public double[][] computeScore(CorrLDA corrlda) {
-        int topic = corrlda.K;
-        int userlen = corrlda.userlen;
-        int movielen = corrlda.movielen;
-        int taglen = corrlda.taglen;
-        double[][] score = new double[userlen][movielen];
-        
-        for (int i = 0; i < 2; i++) {
-            long startTime = System.currentTimeMillis();
-            if (i % Math.floor(userlen / 10) == 0) {
-                System.out.println(Math.floor(userlen / 10));
-            }
-            for (int j = 0; j < 2; j++) {
-                score[i][j] = 0;
-                for (int k = 0; k < 2; k++) {
-                    for (int t = 0; t < 2; t++) {
-                        score[i][j] += corrlda.theta[i][k] + corrlda.fine[j][k] + corrlda.digamma[t][k];
-                    }
-                }
-            }
-            long endTime = System.currentTimeMillis();
-            double time = 0;
-            time = time + (endTime - startTime) / 1000;
-            double timeover = time * (userlen - i - 1) / 60;
-            System.out.println("Ecalepsed time: " + (time) + "s, Completed in " + timeover + " m");
-           
+    public void computeScore(CorrLDA corrlda) {
+        int len=corrlda.userlen;
+        int time=(int) Math.floor(len%1000);
+        for (int i = 0; i < time; i++) {
+            new Thread(new AUC_mt(i*1000,corrlda)).start();
         }
-        /*
-         try {
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("score.dat"), "UTF-8"));
-                for(int j=0;j<userlen;j++){
-                    for(int i=0;i<movielen;i++){
-                        writer.write(score[j][i]+" ");
-                        writer.flush();
-                    }
-                    writer.write("\r\n");
-                    writer.flush();
-                }
-                writer.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-         * 
-         */
-        return score;
     }
 }

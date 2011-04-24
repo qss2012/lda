@@ -59,7 +59,7 @@ public class orTags {
             System.out.println("Arranging tags to id, movies and users\n******************************");
             String line = reader.readLine();
             while (line != null) {
-                StringTokenizer tknr = new StringTokenizer(line, "::");
+                StringTokenizer tknr = new StringTokenizer(line, "\t\r\n");
                 user = Integer.parseInt(tknr.nextToken());
                 doc = Integer.parseInt(tknr.nextToken());
                 tag = tknr.nextToken().toLowerCase().replace("!", "").replace("?", "");

@@ -125,7 +125,7 @@ public final class CorrLDA {
             for (u = 0; u < userlen; u++) {//i is user
 
                 int userID = Integer.parseInt(userIDset[u].toString());
-                System.out.print("\r\nuser " + userID + ":");
+                
                 int M = model.userData.userid2doc.get(userID).size();//number of movies of a user;corrlda.movielens.userData.userid2doc.get(userID).size();
                 writer.write(u + "::" + userID + "\r\n");
                 writer.flush();
@@ -138,7 +138,7 @@ public final class CorrLDA {
                     int topic = (int) Math.floor(Math.random() * K);
                     int movieIDr = Integer.parseInt(model.userData.userid2doc.get(userID).get(m).toString());
                     int movieID = model.itemData.id_idr.get(movieIDr);
-                    System.out.print(movieID + " ");
+                    
                     z[u].add(topic);
                     //number of topic occured in user u
                     nz_u[u][topic] += 1;

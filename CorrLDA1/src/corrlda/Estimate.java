@@ -44,7 +44,7 @@ public class Estimate {
                     }
                 }
             }
-
+            /*
             if (iter % corrlda.step == 0) {
                 computeTheta(corrlda, iter + no);
                 computePhi(corrlda, iter + no);
@@ -52,6 +52,8 @@ public class Estimate {
                 //saveModel(corrlda, iter + no);
                 
             }
+             * 
+             */
             ec = ec + 1;
             long endTime = System.currentTimeMillis();
             double time = 0;
@@ -63,8 +65,7 @@ public class Estimate {
         System.out.println("Saving the final model!\n");
         computeTheta(corrlda, iter - 1 + no);
         computePhi(corrlda, iter - 1 + no);
-        computeDigamma(corrlda, iter - 1 + no);
-        
+        computeDigamma(corrlda, iter - 1 + no);        
         //saveModel(corrlda, iter - 1 + no);
         System.out.println(auc.computeAUC(corrlda));
     }
@@ -289,7 +290,7 @@ public class Estimate {
         }
            
           
-        // savePhi(corrlda, iter);
+        //savePhi(corrlda, iter);
     }
 
     public void computeTheta(CorrLDA corrlda, int iter) {
@@ -308,7 +309,7 @@ public class Estimate {
         }
         
 
-        //  saveTheta(corrlda, iter);
+         //saveTheta(corrlda, iter);
     }
 
     public void computeDigamma(CorrLDA corrlda, int iter) {
